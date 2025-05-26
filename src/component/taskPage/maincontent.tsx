@@ -4,6 +4,7 @@ import { JobListPage } from "../home/JobCard";
 import LogoHeader from "../logoHeader";
 import SearchBar from "../searchBar";
 import CTA from "../cta";
+import { FilterSortBar } from "../filterSortBar";
 
 import {
     Box,
@@ -42,8 +43,17 @@ export const MainContent = () => {
             </Typography>
 
             {/* Search and Filter */}
-            <SearchBar />
-
+            <Box sx={{
+                display: 'flex', gap: 2, p: 3, mb: 3, mt: 3, maxWidth: '100%', mx: 'auto', alignItems: 'center', color: '#98A2B3',
+                '@media (max-width: 991px)': {
+                    maxWidth: '100%',
+                    flexDirection: 'row',
+                    mb: -2
+                },
+            }}>
+                <SearchBar />
+                <FilterSortBar />
+            </Box>
             {/* Popular Jobs */}
             <Box sx={{
                 mb: 2.5, display: 'flex', gap: 2,

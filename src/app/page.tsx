@@ -32,14 +32,14 @@ export default function Home() {
     // <ResetPass />
     // <ForgotPass />
     // <CheckPass />
-    // // <HomePage />
-    // <TaskPage />
+    // <HomePage />
+    <TaskPage />
     // <LandingPage />
     // <LoginPage />
     // <Footer />
     // <VerifyEmail />
     // <ForgotEmail />
-    <JobDetailPage />
+    // <JobDetailPage />
     // <Content />
   );
 }

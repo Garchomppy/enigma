@@ -6,7 +6,7 @@ import { FilterSortBar } from './filterSortBar';
 export default function SearchBar() {
     return (
         <Box sx={{
-            display: 'flex', gap: 2, p: 3, mb: 3, mt: 3, maxWidth: '100%', mx: 'auto', alignItems: 'center', color: '#98A2B3',
+            width: '100%',
             '@media (max-width: 991px)': {
                 maxWidth: '100%',
                 flexDirection: 'row',
@@ -38,7 +38,6 @@ export default function SearchBar() {
                 }}
             />
 
-            <FilterSortBar />
         </Box>
     );
 }
