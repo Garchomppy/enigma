@@ -1,8 +1,23 @@
 import * as React from 'react';
 import { Box, Button } from '@mui/material';
 import Image from 'next/image';
+import Dialog from '@mui/material/Dialog';
+import { useState } from 'react';
+import SlideOutMenu from './filterPage/filterPage';
 
 export function FilterSortBar() {
+    const [open, setOpen] = useState(false);
+
+    // Handle opening the dialog
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    // Handle closing the dialog
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <Box
             sx={{
@@ -42,6 +57,7 @@ export function FilterSortBar() {
                         },
                     },
                 }}
+                onClick={handleOpen} // Trigger dialog on click
             >
                 Filter
             </Button>
@@ -70,6 +86,21 @@ export function FilterSortBar() {
             >
                 Sort by
             </Button>
+
+            {/* Dialog (Pop-up Page) */}
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                maxWidth="lg"
+                fullWidth
+                PaperProps={{
+                    sx: {
+                        borderRadius: '12px', // Apply rounded corners here
+                    },
+                }}
+            >
+                <SlideOutMenu />
+            </Dialog>
         </Box>
     );
 }

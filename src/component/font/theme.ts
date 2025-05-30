@@ -45,6 +45,10 @@ const theme = createTheme({
       fontSize: '14px',
       lineHeight: '20px',
     },
+    caption: {
+      fontSize: '12px',
+      lineHeight: '18px',
+    },
   },
   components: {
     MuiButton: {

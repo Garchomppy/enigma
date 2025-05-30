@@ -4,8 +4,6 @@ import { SidebarNavigation } from "../sideBarNavigation";
 import { MainContent } from "./maincontent";
 
 export default function TaskPage() {
-    const theme = useTheme();
-
     return (
         <Box
             sx={{

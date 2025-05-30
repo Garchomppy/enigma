@@ -15,6 +15,10 @@ import { VerifyEmail } from '@/component/verifyEmail/verifyEmail';
 import { ForgotEmail } from '@/component/verifyEmail/forgotEmail';
 import JobDetailPage from '@/component/jobDetail/jobDetailPage';
 import Content from '@/component/jobDetail/content';
+import SlideOutMenu from '@/component/filterPage/filterPage';
+import DatePickerMenu from '@/component/filterPage/calendar';
+import Location from '@/component/filterPage/locationFilter';
+import DistanceFilter from '@/component/filterPage/distance';
 export default function Home() {
   const [isClient, setIsClient] = useState(false)
 
@@ -41,5 +45,9 @@ export default function Home() {
     // <ForgotEmail />
     // <JobDetailPage />
     // <Content />
+    // <SlideOutMenu />
+    // <DistanceFilter />
+    // <DatePickerMenu />
+    // <Location />
   );
 }
