@@ -1,26 +1,71 @@
 import * as React from 'react';
-import { Box, TextField, InputAdornment, Button } from '@mui/material';
+import { Box, TextField, InputAdornment, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { FilterSortBar } from './filterSortBar';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export default function SearchBar() {
+    const [inputValue, setInputValue] = React.useState('');
+    const [isSpinning, setIsSpinning] = React.useState(false);
+
+    const handleClear = () => {
+        setIsSpinning(true);
+        setInputValue('');
+        // Reset spin state after animation completes
+        setTimeout(() => setIsSpinning(false), 300); // Match animation duration
+    };
+
     return (
-        <Box sx={{
-            width: '100%',
-            '@media (max-width: 991px)': {
-                maxWidth: '100%',
-                flexDirection: 'row',
-                mb: -2
-            },
-        }}>
+        <Box
+            sx={{
+                width: '100%',
+                '@media (max-width: 991px)': {
+                    maxWidth: '100%',
+                    flexDirection: 'row',
+                    mb: -2,
+                },
+            }}
+        >
             <TextField
                 fullWidth
                 variant="outlined"
                 placeholder="Job positions/ Company name"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
                             <SearchIcon sx={{ color: '#98A2B3', backgroundColor: '#F9FAFB' }} />
+                        </InputAdornment>
+                    ),
+                    endAdornment: inputValue && (
+                        <InputAdornment
+                            position="end"
+                            sx={{
+                                animation: inputValue ? 'flipIn 0.3s ease-in forwards' : 'flipOut 0.3s ease-out forwards',
+                                transformStyle: 'preserve-3d',
+                                '@keyframes flipIn': {
+                                    '0%': { transform: 'rotateY(90deg)', opacity: 0 },
+                                    '100%': { transform: 'rotateY(0deg)', opacity: 1 },
+                                },
+                                '@keyframes flipOut': {
+                                    '0%': { transform: 'rotateY(0deg)', opacity: 1 },
+                                    '100%': { transform: 'rotateY(-90deg)', opacity: 0 },
+                                },
+                            }}
+                        >
+                            <IconButton
+                                onClick={handleClear}
+                                edge="end"
+                                sx={{
+                                    animation: isSpinning ? 'spin 0.3s ease-in-out' : 'none',
+                                    '@keyframes spin': {
+                                        '0%': { transform: 'rotateX(0deg)' },
+                                        '100%': { transform: 'rotateX(360deg)' },
+                                    },
+                                }}
+                            >
+                                <ClearIcon sx={{ color: '#000' }} />
+                            </IconButton>
                         </InputAdornment>
                     ),
                 }}
@@ -37,7 +82,6 @@ export default function SearchBar() {
                     boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
                 }}
             />
-
         </Box>
     );
 }
