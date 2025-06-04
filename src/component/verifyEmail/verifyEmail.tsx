@@ -1,270 +1,235 @@
 import React from 'react';
-import LogoHeader from '../logoHeader';
-import { MdOutlineMarkEmailRead, MdContentCopy } from 'react-icons/md'; // Correctly imported icons
 
 export function VerifyEmail({ firstName = 'User' }) {
-    // Verification URL
-    const verificationUrl =
-        'https://secure.gameboost.com/verify/user/abc123xyz789xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+  // Verification URL
+  const verificationUrl =
+    'https://secure.gameboost.com/verify/user/abc123xyz789xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
-    // Function to shorten URL
-    const shortenUrl = (url: string, maxLength = 50) => {
-        if (url.length <= maxLength) return url;
-        return `${url.substring(0, maxLength - 3)}...`;
-    };
+  // Function to shorten URL
+  const shortenUrl = (url: string, maxLength = 50) => {
+    if (url.length <= maxLength) return url;
+    return `${url.substring(0, maxLength - 3)}...`;
+  };
 
-    // Function to handle copy to clipboard and show notification
-    const handleCopyLink = () => {
-        navigator.clipboard.writeText(verificationUrl);
-    };
+  return (
+    <div
+      style={{
+        background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+        padding: '20px',
+        fontFamily: "'Inter', Arial, sans-serif",
+        lineHeight: '1.5',
+        color: '#475467',
+      }}
+    >
+      <table
+        role="presentation"
+        style={{
+          maxWidth: '500px',
+          width: '100%',
+          margin: '0 auto',
+          borderCollapse: 'collapse',
+          backgroundColor: '#ffffff',
+          borderRadius: '12px',
+          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.1)',
+        }}
+      >
+        <tbody>
+          <tr>
+            <td style={{ padding: '15px' }}>
+              <img
+                src="/Logo2.svg"
+                alt="Career Logo"
+                style={{ width: '135px', height: '28px', display: 'block' }}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <hr
+                style={{
+                  margin: '8px 0',
+                  border: '0',
+                  borderTop: '1px solid #e4e7ec',
+                  width: '100%',
+                }}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td style={{ padding: '16px', textAlign: 'center' }}>
+              {/* Icon and Title */}
+              <div style={{ marginBottom: '16px' }}>
+                {/* Todo Thay icon */}
+                <img
+                  src="/email-icon.png"
+                  alt="Email Icon"
+                  style={{
+                    width: '50px', height: '50px', display: 'block', margin: '0 auto'
+                  }}
+                />
+                <h3
+                  style={{
+                    fontSize: '28px',
+                    lineHeight: '32px',
+                    fontWeight: '600',
+                    color: '#101828',
+                    marginTop: '8px',
+                    marginBottom: '0',
+                  }}
+                >
+                  Verify Your Email Address
+                </h3>
+              </div>
 
-    return (
-        <div className="container">
-            <div className="card">
-                <LogoHeader />
-                <hr className="divider" />
-                <div className="card-content">
-                    {/* Icon and Title */}
-                    <div className="icon-title">
-                        <MdOutlineMarkEmailRead className="icon" color='#000' style={{
-                            width: '50px', height: '50px'
-                        }} />
-                        <h3>Verify Your Email Address</h3>
-                    </div>
+              {/* Greeting Message */}
+              <p
+                style={{
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  color: '#475467',
+                  margin: '0 0 24px',
+                }}
+              >
+                Hi {firstName}, let’s get started! Confirm your email to unlock your account.
+              </p>
 
-                    {/* Greeting Message */}
-                    <p className="greeting">Hi {firstName}, let’s get started! Confirm your email to unlock account.</p>
+              {/* Chip for Time Limit */}
+              <span
+                style={{
+                  display: 'inline-block',
+                  padding: '4px 8px',
+                  fontSize: '12px',
+                  lineHeight: '18px',
+                  color: '#ed6c02',
+                  border: '1px solid #ed6c02',
+                  borderRadius: '16px',
+                  marginBottom: '24px',
+                }}
+              >
+                Link expires in 1 hour
+              </span>
 
-                    {/* Chip for Time Limit */}
-                    <span className="chip">Link expires in 1 hour</span>
-
-                    {/* Verification Button */}
-                    <a href={verificationUrl} target="_blank" rel="noopener noreferrer" className="button">
-                        Activate My Account
-                    </a>
-                </div>
-
-                {/* Alternative URL Copy Option */}
-                <div className="url-copy-section">
-                    <p className="url-copy-text">Can't click the button above? Copy it below:</p>
-                    <div className="url-copy-container">
-                        <span className="url-text">{shortenUrl(verificationUrl)}</span>
-                        <button onClick={handleCopyLink} className="copy-button">
-                            <MdContentCopy className="copy-icon" />
-                            Copy
-                        </button>
-                    </div>
-                </div>
-
-                {/* Support Section */}
-                <div className="support-section">
-                    <p>
-                        Need help?{' '}
-                        <a href="https://support.gameboost.com" target="_blank" rel="noopener noreferrer" className="support-link">
-                            Contact help@enigma.com
-                        </a>
-                    </p>
-                </div>
-
-                {/* Notification for copy confirmation */}
-                <div className="notification">
-                    <span>URL copied successfully!</span>
-                </div>
-            </div>
-
-            <style jsx>{`
-        .container {
-          height: 100vh;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-
-        .card {
-          max-width: 500px;
-          border-radius: 12px;
-          margin-bottom: 16px;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-          background-color: #ffffff;
-          width: 100%;
-        }
-
-        .divider {
-          margin: 8px 0;
-          border: 0;
-          border-top: 1px solid #e4e7ec;
-          width: 100%;
-          display: block;
-        }
-
-        @media (max-width: 600px) {
-          .divider {
-            display: block;
-          }
-        }
-
-        .card-content {
-          text-align: center;
-          padding: 16px;
-        }
-
-        .icon-title {
-          margin-bottom: 16px;
-        }
-
-        h3 {
-          font-size: 28px;
-          line-height: 32px;
-          font-weight: 600;
-          font-family: 'Inter', sans-serif;
-          margin-top: 8px;
-          color: #101828;
-        }
-
-        .greeting {
-          font-size: 16px;
-          line-height: 24px;
-          font-family: 'Inter', sans-serif;
-          color: #475467;
-          margin-bottom: 24px;
-        }
-
-        .chip {
-          display: inline-block;
-          padding: 4px 8px;
-          font-size: 12px;
-          line-height: 18px;
-          font-family: 'Inter', sans-serif;
-          color: #ed6c02;
-          border: 1px solid #ed6c02;
-          border-radius: 16px;
-          margin-bottom: 24px;
-        }
-
-        .button {
-          display: block;
-          width: 100%;
-          padding: 12px 16px;
-          font-size: 16px;
-          line-height: 24px;
-          font-weight: 600;
-          font-family: 'Inter', sans-serif;
-          background-color: #2494b6;
-          color: #ffffff;
-          text-decoration: none;
-          border-radius: 8px;
-          text-align: center;
-          transition: background-color 0.2s;
-        }
-
-        .button:hover {
-          background-color: #217799;
-        }
-
-        .url-copy-section {
-          background-color: #effbfc;
-          padding: 16px;
-        }
-
-        .url-copy-text {
-          font-size: 14px;
-          line-height: 20px;
-          font-family: 'Inter', sans-serif;
-          color: #475467;
-          margin-bottom: 8px;
-          text-align: center;
-        }
-
-        .url-copy-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .url-text {
-          font-size: 14px;
-          line-height: 20px;
-          font-family: 'Inter', sans-serif;
-          color: #2494b6;
-          word-break: break-word;
-          max-width: 80%;
-        }
-
-        .copy-button {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          padding: 4px 8px;
-          font-size: 14px;
-          line-height: 20px;
-          font-weight: 600;
-          font-family: 'Inter', sans-serif;
-          color: #2494b6;
-          background: none;
-          border: none;
-          border-radius: 8px;
-          cursor: pointer;
-          transition: background-color 0.2s;
-        }
-
-        .copy-button:hover {
-          background-color: rgba(36, 148, 182, 0.1);
-        }
-
-        .copy-icon {
-          width: 16px;
-          height: 16px;
-          fill: #2494b6;
-        }
-
-        .support-section {
-          display: flex;
-          justify-content: center;
-          padding-bottom: 24px;
-        }
-
-        .support-section p {
-          font-size: 14px;
-          line-height: 20px;
-          font-family: 'Inter', sans-serif;
-          color: #475467;
-          margin: 0;
-        }
-
-        .support-link {
-          color: #2494b6;
-          text-decoration: none;
-        }
-
-        .support-link:hover {
-          text-decoration: underline;
-        }
-
-        .notification {
-          position: fixed;
-          bottom: 16px;
-          left: 50%;
-          transform: translateX(-50%);
-          background-color: #2e7d32;
-          color: #ffffff;
-          padding: 8px 16px;
-          border-radius: 4px;
-          font-size: 14px;
-          line-height: 20px;
-          font-family: 'Inter', sans-serif;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-          opacity: 0;
-          visibility: hidden;
-          transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .notification.show {
-          opacity: 1;
-          visibility: visible;
-        }
-      `}</style>
-        </div>
-    );
+              {/* Verification Button */}
+              <a
+                href={verificationUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  padding: '12px 16px',
+                  fontSize: '16px',
+                  lineHeight: '24px',
+                  fontWeight: '600',
+                  backgroundColor: '#2494b6',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  borderRadius: '8px',
+                  textAlign: 'center',
+                  marginBottom: '24px',
+                }}
+              >
+                Activate My Account
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <td
+              style={{
+                backgroundColor: '#effbfc',
+                padding: '16px',
+                textAlign: 'center',
+              }}
+            >
+              {/* Alternative URL Copy Option */}
+              <p
+                style={{
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                  color: '#475467',
+                  margin: '0 0 8px',
+                }}
+              >
+                Can't click the button above? Copy the link below:
+              </p>
+              <table
+                role="presentation"
+                style={{
+                  width: '100%',
+                  borderCollapse: 'collapse',
+                  margin: '0 auto',
+                  maxWidth: '90%',
+                }}
+              >
+                <tbody>
+                  <tr>
+                    <td style={{ padding: '0', textAlign: 'left' }}>
+                      <span
+                        style={{
+                          fontSize: '14px',
+                          lineHeight: '20px',
+                          color: '#2494b6',
+                          wordBreak: 'break-word',
+                          display: 'inline-block',
+                        }}
+                      >
+                        {shortenUrl(verificationUrl)}
+                      </span>
+                    </td>
+                    <td style={{ padding: '0', textAlign: 'right' }}>
+                      <a
+                        href={verificationUrl}
+                        target="_blank"
+                        style={{
+                          display: 'inline-block',
+                          padding: '4px 8px',
+                          fontSize: '14px',
+                          lineHeight: '20px',
+                          fontWeight: '600',
+                          color: '#2494b6',
+                          backgroundColor: 'transparent',
+                          border: 'none',
+                          borderRadius: '8px',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Copy
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ padding: '0 16px 24px', textAlign: 'center' }}>
+              {/* Support Section */}
+              <p
+                style={{
+                  fontSize: '14px',
+                  lineHeight: '20px',
+                  color: '#475467',
+                  margin: '0',
+                }}
+              >
+                Need help?{' '}
+                <a
+                  href="https://support.gameboost.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: '#2494b6',
+                    textDecoration: 'none',
+                  }}
+                >
+                  Contact help@enigma.com
+                </a>
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
 }
