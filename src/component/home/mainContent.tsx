@@ -3,7 +3,7 @@ import SuggestedJobCard from "../suggestJobCard";
 import SectionTitle from "../font/sectionTitle";
 import Image from 'next/image';
 import SearchIcon from '@mui/icons-material/Search';
-import JobCard from "./JobCard";
+import { JobCard } from "./JobCard";
 import LogoHeader from "../logoHeader";
 
 import {
@@ -14,13 +14,11 @@ import {
     Card,
     CardContent,
     IconButton,
-    useTheme,
     TextField, InputAdornment,
     Divider,
 } from "@mui/material";
 
 export const MainContent = () => {
-    const theme = useTheme();
     const jobData = [1, 2, 3, 4];
 
     const popularJobs = [
@@ -35,7 +33,6 @@ export const MainContent = () => {
         <Box component="main" sx={{
             flexGrow: 1,
             p: { xs: 0.5, sm: 3 },
-            width: '100vh',
             ml: 0.5,
             '@media (max-width: 991px)': {
                 maxWidth: '100%',

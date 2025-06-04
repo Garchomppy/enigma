@@ -1,6 +1,5 @@
 "use client";
 import React from 'react';
-import { useState } from 'react';
 import {
     Box,
     Typography,
@@ -22,7 +21,6 @@ import { Email as EmailIcon, ContentCopy as CopyIcon, Lock } from '@mui/icons-ma
 import theme from '../font/theme'; // Import the custom theme
 
 export function ForgotEmail() {
-    const [openSnackbar, setOpenSnackbar] = useState(false);
 
     // Verification URL
     const verificationUrl = 'https://secure.gameboost.com/verify/user/abc123xyz789xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
@@ -34,13 +32,9 @@ export function ForgotEmail() {
     // Function to handle copy to clipboard
     const handleCopyLink = () => {
         navigator.clipboard.writeText(verificationUrl);
-        setOpenSnackbar(true);
     };
 
-    // Function to handle snackbar close
-    const handleSnackbarClose = () => {
-        setOpenSnackbar(false);
-    };
+
     return (
         <ThemeProvider theme={theme}>
             <Container
@@ -169,13 +163,10 @@ export function ForgotEmail() {
 
                 {/* Snackbar for copy confirmation */}
                 <Snackbar
-                    open={openSnackbar}
                     autoHideDuration={3000}
-                    onClose={handleSnackbarClose}
                     anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
                 >
                     <Alert
-                        onClose={handleSnackbarClose}
                         severity="success"
                         sx={{
                             width: '100%',
