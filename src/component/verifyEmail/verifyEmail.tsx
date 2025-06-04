@@ -13,163 +13,205 @@ import {
     Snackbar,
     Alert,
     Stack,
-    ThemeProvider
 } from '@mui/material';
 import LogoHeader from '../logoHeader';
 import { Email as EmailIcon, ContentCopy as CopyIcon } from '@mui/icons-material';
-import theme from '../font/theme'; // Import the custom theme
 
-export function VerifyEmail() {
-
+export function VerifyEmail({ firstName = 'User' }) {
     // Verification URL
-    const verificationUrl = 'https://secure.gameboost.com/verify/user/abc123xyz789xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+    const verificationUrl =
+        'https://secure.gameboost.com/verify/user/abc123xyz789xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
 
+    // Function to shorten URL
     const shortenUrl = (url: string, maxLength = 50) => {
         if (url.length <= maxLength) return url;
         return `${url.substring(0, maxLength - 3)}...`; // Truncate and add ellipsis
     };
+
     // Function to handle copy to clipboard
     const handleCopyLink = () => {
         navigator.clipboard.writeText(verificationUrl);
     };
 
-
     return (
-        <ThemeProvider theme={theme}>
-            <Container
+        <Container
+            sx={{
+                height: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+            }}
+        >
+            <Card
                 sx={{
-                    height: '100vh',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)'
+                    maxWidth: 500,
+                    borderRadius: 3,
+                    mb: 2,
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
+                    bgcolor: '#FFFFFF', // Replaced background.paper with #FFFFFF
                 }}
             >
-                <Card
+                <LogoHeader />
+                <Divider
                     sx={{
-                        maxWidth: 500,
-                        borderRadius: 3,
-                        mb: 2,
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-                        bgcolor: 'background.paper' // Use theme's paper background color
-                    }}
-                >
-                    <LogoHeader />
-                    <Divider sx={{
-                        mt: 1, mb: 1, width: '100%',
+                        mt: 1,
+                        mb: 1,
+                        width: '100%',
                         display: {
-                            lg: 'block', sm: 'block',
-                        }
-                    }} />
+                            lg: 'block',
+                            sm: 'block',
+                        },
+                    }}
+                />
 
-                    <CardContent sx={{ textAlign: 'center' }}>
-                        {/* Icon and Title */}
-                        <Box sx={{ mb: 2 }}>
-                            <EmailIcon sx={{ fontSize: 40, color: 'primary.main' }} /> {/* Use theme's primary color */}
-                            <Typography
-                                variant="h3" // Use h3 as per theme's typography
-                                sx={{ fontWeight: 'medium', mt: 1, color: 'text.primary' }} // Use theme's primary text color
-                            >
-                                Verify Your Email Address
-                            </Typography>
-                        </Box>
-
-                        {/* Greeting Message */}
+                <CardContent sx={{ textAlign: 'center' }}>
+                    {/* Icon and Title */}
+                    <Box sx={{ mb: 2 }}>
+                        <EmailIcon sx={{ fontSize: 40, color: '#2494B6' }} /> {/* Replaced primary.main with #2494B6 */}
                         <Typography
-                            variant="body1"
-                            sx={{ color: 'text.secondary', mb: 3 }} // Use theme's secondary text color
+                            sx={{
+                                fontSize: '28px', // From theme.typography.h3
+                                lineHeight: '32px',
+                                fontWeight: 600,
+                                fontFamily: 'Inter, sans-serif',
+                                mt: 1,
+                                color: '#101828', // Replaced text.primary with #101828
+                            }}
                         >
-                            Hi ${"first.name"}, let’s get started! Confirm your email to unlock account.
+                            Verify Your Email Address
                         </Typography>
+                    </Box>
 
-                        {/* Chip for Time Limit */}
-                        <Chip
-                            label="Link expires in 1 hour"
-                            color="warning"
-                            variant="outlined"
-                            size="small"
-                            sx={{ mb: 3 }}
-                        />
-
-                        {/* Verification Button */}
-                        <Button
-                            variant="contained"
-                            color="primary" // Use theme's primary color (#2494B6)
-                            href={verificationUrl}
-                            target="_blank"
-                            fullWidth
-                            sx={{ py: 1.5, fontSize: '1rem' }} // Theme's button styles will apply (borderRadius: '8px', etc.)
-                        >
-                            Activate My Account
-                        </Button>
-                    </CardContent>
-
-                    {/* Alternative URL Copy Option */}
-                    <CardContent sx={{ bgcolor: 'primary.light', py: 2 }}> {/* Use theme's primary.light color */}
-                        <Typography
-                            variant="body2"
-                            sx={{ color: 'text.secondary', mb: 1, justifySelf: 'center' }} // Use theme's secondary text color
-                        >
-                            Can't click the button above? Copy it below:
-                        </Typography>
-                        <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    color: 'primary.main', // Use theme's primary color
-                                    wordBreak: 'break-word',
-                                    maxWidth: '80%'
-                                }}
-                            >
-                                {shortenUrl(verificationUrl)}
-                            </Typography>
-                            <Button
-                                size="small"
-                                startIcon={<CopyIcon />}
-                                onClick={handleCopyLink}
-                                sx={{ color: 'primary.main' }} // Use theme's primary color
-                            >
-                                Copy
-                            </Button>
-                        </Stack>
-                    </CardContent>
-
-                    {/* Support Section */}
-                    <CardActions sx={{ justifyContent: 'center', pb: 3 }}>
-                        <Typography
-                            variant="body2"
-                            sx={{ color: 'text.secondary' }} // Use theme's secondary text color
-                        >
-                            Need help?{' '}
-                            <Link
-                                href="https://support.gameboost.com" //đường link
-                                target="_blank"
-                                underline="hover"
-                                sx={{ color: 'primary.main' }} // Use theme's primary color
-                            >
-                                Contact help@enigma.com
-                            </Link>
-                        </Typography>
-                    </CardActions>
-                </Card>
-
-                {/* Snackbar for copy confirmation */}
-                <Snackbar
-                    autoHideDuration={3000}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-                >
-                    <Alert
-                        severity="success"
+                    {/* Greeting Message */}
+                    <Typography
                         sx={{
-                            width: '100%',
-                            borderRadius: 4,
+                            fontSize: '16px', // From theme.typography.body1
+                            lineHeight: '24px',
+                            fontFamily: 'Inter, sans-serif',
+                            color: '#475467', // Replaced text.secondary with #475467
+                            mb: 3,
                         }}
                     >
-                        URL copied successfully!
-                    </Alert>
-                </Snackbar>
+                        Hi {firstName}, let’s get started! Confirm your email to unlock account.
+                    </Typography>
 
-            </Container>
-        </ThemeProvider>
+                    {/* Chip for Time Limit */}
+                    <Chip
+                        label="Link expires in 1 hour"
+                        color="warning"
+                        variant="outlined"
+                        size="small"
+                        sx={{ mb: 3 }}
+                    />
+
+                    {/* Verification Button */}
+                    <Button
+                        variant="contained"
+                        sx={{
+                            backgroundColor: '#2494B6', // Replaced color="primary" with #2494B6
+                            color: '#FFFFFF', // Default text color for contained button
+                            textTransform: 'none', // From theme.components.MuiButton.styleOverrides.root
+                            borderRadius: '8px',
+                            padding: '10px 16px',
+                            fontWeight: 600,
+                            boxShadow: 'none', // From theme.components.MuiButton.styleOverrides.contained
+                            py: 1.5,
+                            fontSize: '1rem',
+                            width: '100%',
+                            '&:hover': {
+                                backgroundColor: '#217799', // Replaced primary.dark with #217799
+                            },
+                        }}
+                        href={verificationUrl}
+                        target="_blank"
+                    >
+                        Activate My Account
+                    </Button>
+                </CardContent>
+
+                {/* Alternative URL Copy Option */}
+                <CardContent sx={{ bgcolor: '#EFFBFC', py: 2 }}> {/* Replaced primary.light with #EFFBFC */}
+                    <Typography
+                        sx={{
+                            fontSize: '14px', // From theme.typography.body2
+                            lineHeight: '20px',
+                            fontFamily: 'Inter, sans-serif',
+                            color: '#475467', // Replaced text.secondary with #475467
+                            mb: 1,
+                            justifySelf: 'center',
+                        }}
+                    >
+                        Can't click the button above? Copy it below:
+                    </Typography>
+                    <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
+                        <Typography
+                            sx={{
+                                fontSize: '14px', // From theme.typography.body2
+                                lineHeight: '20px',
+                                fontFamily: 'Inter, sans-serif',
+                                color: '#2494B6', // Replaced primary.main with #2494B6
+                                wordBreak: 'break-word',
+                                maxWidth: '80%',
+                            }}
+                        >
+                            {shortenUrl(verificationUrl)}
+                        </Typography>
+                        <Button
+                            size="small"
+                            startIcon={<CopyIcon />}
+                            onClick={handleCopyLink}
+                            sx={{
+                                textTransform: 'none', // From theme.components.MuiButton.styleOverrides.root
+                                borderRadius: '8px',
+                                padding: '10px 16px',
+                                fontWeight: 600,
+                                color: '#2494B6', // Replaced primary.main with #2494B6
+                            }}
+                        >
+                            Copy
+                        </Button>
+                    </Stack>
+                </CardContent>
+
+                {/* Support Section */}
+                <CardActions sx={{ justifyContent: 'center', pb: 3 }}>
+                    <Typography
+                        sx={{
+                            fontSize: '14px', // From theme.typography.body2
+                            lineHeight: '20px',
+                            fontFamily: 'Inter, sans-serif',
+                            color: '#475467', // Replaced text.secondary with #475467
+                        }}
+                    >
+                        Need help?{' '}
+                        <Link
+                            href="https://support.gameboost.com"
+                            target="_blank"
+                            underline="hover"
+                            sx={{ color: '#2494B6' }} // Replaced primary.main with #2494B6
+                        >
+                            Contact help@enigma.com
+                        </Link>
+                    </Typography>
+                </CardActions>
+            </Card>
+
+            {/* Snackbar for copy confirmation */}
+            <Snackbar
+                autoHideDuration={3000}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            >
+                <Alert
+                    severity="success"
+                    sx={{
+                        width: '100%',
+                        borderRadius: 4,
+                    }}
+                >
+                    URL copied successfully!
+                </Alert>
+            </Snackbar>
+        </Container>
     );
-};
+}

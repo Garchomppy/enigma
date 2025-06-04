@@ -26,7 +26,11 @@ import TagChips from "../badge";
 const SectionContent: FunctionComponent = () => {
     const tagss = ['ERP/CRM Systems', 'Fintech', 'Documentation Skills'];
 
+    const currentDate = new Date();
+
     const [showMore, setShowMore] = useState(false);
+    const [showMoreJob, setShowMoreJob] = useState(false);
+
     return (
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3, p: 2, }}>
@@ -489,20 +493,20 @@ const SectionContent: FunctionComponent = () => {
                             {showMore ? <Image src="/showless.svg" alt="" height={20} width={20} /> : <Image src="/showMore.svg" alt="" height={24} width={24} />}
                         </IconButton>
                     </Box>
-
                 </Card>
             </Box>
 
             {/* More Jobs Section */}
             <Card sx={{ borderRadius: 4 }}>
                 <CardContent>
-                    <Typography variant="h6" fontWeight={600}>
+                    <Typography fontSize={"20px"} lineHeight={"30px"} fontWeight={600}>
                         More jobs
                     </Typography>
                 </CardContent>
                 <Box sx={{ px: 2, display: "flex", flexDirection: "column", gap: 2 }}>
                     {[
                         {
+                            img: "/moreJob.png",
                             title: "Delivery Manager",
                             deadline: "May 31, 2025",
                             applicants: 11,
@@ -510,6 +514,7 @@ const SectionContent: FunctionComponent = () => {
                             tags: ["Agile Delivery", "Innovation Management", "Team Leadership"],
                         },
                         {
+                            img: "/moreJob1.png",
                             title: "Advanced IT Security Engineer",
                             deadline: "June 5, 2025",
                             applicants: 15,
@@ -517,59 +522,92 @@ const SectionContent: FunctionComponent = () => {
                             tags: ["Cybersecurity", "Risk Assessment", "Security Protocols"],
                         },
                         {
+                            img: "/moreJob2.png",
                             title: "Infrastructure Project Manager",
                             deadline: "June 10, 2025",
                             applicants: 11,
                             salary: "$50.00 - $60.00 Per Hour",
                             tags: ["Project Management", "Infrastructure Planning", "Stakeholder Communication"],
                         },
-                    ].map((job, index) => (
+                        {
+                            img: "/moreJob2.png",
+                            title: "Infrastructure Project Manager",
+                            deadline: "June 10, 2025",
+                            applicants: 11,
+                            salary: "$50.00 - $60.00 Per Hour",
+                            tags: ["Project Management", "Infrastructure Planning", "Stakeholder Communication"],
+                        },
+                    ].map((job, index) => {
+                        const deadlineDate = new Date(job.deadline);
+                        const isExpired = deadlineDate < currentDate;
+                        const displayedJobs = showMoreJob ? job : job.slice(0, 2);
 
-                        <Card key={index} sx={{ display: "flex", gap: 2, p: 2, border: "1px solid #e4e7ec", borderRadius: 3 }}>
-                            <CardMedia
-                                component="img"
-                                sx={{ width: 200, height: 124, borderRadius: 2, objectFit: "cover" }}
-                                image="Image.png"
-                                alt="Job Image"
-                            />
-                            <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 1 }}>
-                                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                                    <Typography variant="h6" fontWeight={600}>
-                                        {job.title}
-                                    </Typography>
-                                    <IconButton>
-                                        <img src="/bookmark.svg" alt="Company Logo" style={{ width: 43 }} />
-                                    </IconButton>
-                                    <IconButton>
-                                        <Share />
-                                    </IconButton>
+                        return (
+                            <Card key={index}
+                                sx={{ display: "flex", gap: 2, p: 2, border: "1px solid #e4e7ec", borderRadius: 3 }}>
+                                <CardMedia
+                                    component="img"
+                                    sx={{
+                                        width: '200px', // Keep width at 30% of the card
+                                        height: '124px', // Let height adjust based on image aspect ratio
+                                        borderRadius: 2,
+                                        objectFit: 'cover', // Show the entire image without cropping
+                                        objectPosition: 'center', // Center the image within the container
+                                    }}
+                                    image={job.img}
+                                    alt={'${job.title} Image'}
+                                />
+                                <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 1 }}>
+                                    <Box sx={{ display: "flex", alignItems: "center", gap: 2, justifyContent: 'space-between' }}>
+                                        <Typography fontSize={"18px"} lineHeight={"28px"} fontWeight={600}>
+                                            {job.title}
+                                        </Typography>
+                                        <Box>
+                                            <IconButton>
+                                                <Image src="/bookmark.svg" alt="" height={24} width={24} />
+                                            </IconButton>
+                                            <IconButton>
+                                                <Image src="/share.png" alt="" height={24} width={24} />
+                                            </IconButton>
+                                        </Box>
+                                    </Box>
+                                    <Box sx={{ display: 'flex', gap: 1 }}>
+                                        <Typography variant="body2" color={isExpired ? '#d32f2f' : "#6941c6"}>
+                                            Submission deadline: {job.deadline} {isExpired && '(Expired)'}
+                                        </Typography>
+                                        <Typography variant="body2" color={"#6941c6"}>
+                                            • {job.applicants} applicants
+                                        </Typography>
+                                    </Box>
+                                    <Stack direction="row" spacing={1} alignItems="center">
+                                        <Image src="wallet.svg" alt="wallet" width={20} height={20} />
+                                        <Typography variant="body2">{job.salary}</Typography>
+                                    </Stack>
+                                    <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
+                                        <TagChips tags={job.tags} salary="" showSalary={false} />
+                                    </Stack>
                                 </Box>
-                                <Typography variant="body2" color="#6941c6">
-                                    Submission deadline: {job.deadline} • {job.applicants} applicants
+                            </Card>
+                        )
+                    })}
+
+                    {jobs.length > 2 && (
+                        <CardContent>
+                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
+                                <Typography variant="body1" fontWeight={600} sx={{ color: '#217799' }}>
+                                    {showMoreJob ? 'Show less' : 'Show more'}
                                 </Typography>
-                                <Stack direction="row" spacing={1} alignItems="center">
-                                    <Work fontSize="small" />
-                                    <Typography variant="body2">{job.salary}</Typography>
-                                </Stack>
-                                <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
-                                    {job.tags.map((i) => (
-                                        <TagChips key={i} tags={job.tags} salary="" showSalary={false} />
-                                    ))}
-                                </Stack>
+                                <IconButton sx={{ color: '#217799' }} onClick={() => setShowMoreJob(!showMoreJob)}>
+                                    {showMoreJob ? (
+                                        <Image src="/showless.svg" alt="Show less" height={20} width={20} />
+                                    ) : (
+                                        <Image src="/showMore.svg" alt="Show more" height={24} width={24} />
+                                    )}
+                                </IconButton>
                             </Box>
-                        </Card>
-                    ))}
+                        </CardContent>
+                    )}
                 </Box>
-                <CardContent>
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                        <Typography variant="body1" color="#217799">
-                            Show more
-                        </Typography>
-                        <IconButton sx={{ color: "#217799" }}>
-                            <Image src="/showMore.svg" alt="" height={24} width={24} />
-                        </IconButton>
-                    </Box>
-                </CardContent>
             </Card>
         </Box >
     );
