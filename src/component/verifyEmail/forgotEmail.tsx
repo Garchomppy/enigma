@@ -1,25 +1,11 @@
-import React, { useState } from 'react';
-import {
-    Box,
-    Typography,
-    Button,
-    Link,
-    Container,
-    Card,
-    CardContent,
-    CardActions,
-    Chip,
-    Divider,
-    Snackbar,
-    Alert,
-    Stack,
-} from '@mui/material';
+"use client";
+import React, { useRef } from 'react';
 import LogoHeader from '../logoHeader';
-import { Email as EmailIcon, ContentCopy as CopyIcon, Lock } from '@mui/icons-material';
+import { MdLock, MdContentCopy } from 'react-icons/md'; // Use MdLock for password reset context
 
 export function ForgotEmail() {
-    // State for Snackbar visibility
-    const [open, setOpen] = useState(false);
+    // Create a ref for the notification element
+    const notificationRef = useRef(null);
 
     // Verification URL
     const verificationUrl =
@@ -28,214 +14,271 @@ export function ForgotEmail() {
     // Function to shorten URL
     const shortenUrl = (url: string, maxLength = 50) => {
         if (url.length <= maxLength) return url;
-        return `${url.substring(0, maxLength - 3)}...`; // Truncate and add ellipsis
+        return `${url.substring(0, maxLength - 3)}...`;
     };
 
-    // Function to handle copy to clipboard
+    // Function to handle copy to clipboard and show notification
     const handleCopyLink = () => {
         navigator.clipboard.writeText(verificationUrl);
-        setOpen(true); // Show Snackbar on copy
-    };
 
-    // Handle Snackbar close
-    const handleClose = () => {
-        setOpen(false);
     };
 
     return (
-        <Container
-            sx={{
-                height: '100vh',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
-            }}
-        >
-            <Card
-                sx={{
-                    maxWidth: 500,
-                    borderRadius: 3,
-                    mb: 2,
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.1)',
-                    bgcolor: '#FFFFFF', // Replaced background.paper with #FFFFFF
-                }}
-            >
+        <div className="container">
+            <div className="card">
                 <LogoHeader />
-                <Divider
-                    sx={{
-                        mt: 1,
-                        mb: 1,
-                        width: '100%',
-                        display: {
-                            lg: 'block',
-                            sm: 'block',
-                        },
-                    }}
-                />
-
-                <CardContent sx={{ textAlign: 'center' }}>
+                <hr className="divider" />
+                <div className="card-content">
                     {/* Icon and Title */}
-                    <Box sx={{ mb: 2 }}>
-                        <Lock sx={{ fontSize: 40, color: '#2494B6' }} /> {/* Replaced primary.main with #2494B6 */}
-                        <Typography
-                            sx={{
-                                fontSize: '28px', // From theme.typography.h3
-                                lineHeight: '32px',
-                                fontWeight: 600,
-                                fontFamily: 'Inter, sans-serif',
-                                mt: 1,
-                                color: '#101828', // Replaced text.primary with #101828
-                            }}
-                        >
-                            Forgot Your Password?
-                        </Typography>
-                    </Box>
+                    <div className="icon-title">
+                        <MdLock className="icon" color="#000" style={{
+                            width: '50px', height: '50px'
+                        }} />
+                        <h3>Forgot Your Password?</h3>
+                    </div>
 
                     {/* Greeting Message */}
-                    <Typography
-                        sx={{
-                            fontSize: '16px', // From theme.typography.body1
-                            lineHeight: '24px',
-                            fontFamily: 'Inter, sans-serif',
-                            color: '#475467', // Replaced text.secondary with #475467
-                            mb: 3,
-                        }}
-                    >
+                    <p className="greeting">
                         It seems like you forgot your account password. If this is true, click below to reset your password.
-                    </Typography>
+                    </p>
 
                     {/* Chip for Time Limit */}
-                    <Chip
-                        label="Link expires in 1 hour"
-                        color="warning"
-                        variant="outlined"
-                        size="small"
-                        sx={{ mb: 3 }}
-                    />
+                    <span className="chip">Link expires in 1 hour</span>
 
                     {/* Verification Button */}
-                    <Button
-                        variant="contained"
-                        sx={{
-                            backgroundColor: '#2494B6', // Replaced color="primary" with #2494B6
-                            color: '#FFFFFF', // Default text color for contained button
-                            textTransform: 'none', // From theme.components.MuiButton.styleOverrides.root
-                            borderRadius: '8px', // From theme.components.MuiButton.styleOverrides.root
-                            padding: '10px 16px',
-                            fontWeight: 600,
-                            boxShadow: 'none', // From theme.components.MuiButton.styleOverrides.contained
-                            py: 1.5,
-                            fontSize: '1rem',
-                            width: '100%',
-                            '&:hover': {
-                                backgroundColor: '#217799', // Replaced primary.dark with #217799
-                            },
-                        }}
-                        href={verificationUrl}
-                        target="_blank"
-                    >
+                    <a href={verificationUrl} target="_blank" rel="noopener noreferrer" className="button">
                         Reset a New Password
-                    </Button>
+                    </a>
 
-                    <Typography
-                        sx={{
-                            fontSize: '16px', // From theme.typography.body1
-                            lineHeight: '24px',
-                            fontFamily: 'Inter, sans-serif',
-                            color: '#475467', // Replaced text.secondary with #475467
-                            mt: 3,
-                        }}
-                    >
+                    <p className="greeting">
                         If you did not forget your password, you can safely ignore this email.
-                    </Typography>
-                </CardContent>
+                    </p>
+                </div>
 
                 {/* Alternative URL Copy Option */}
-                <CardContent sx={{ bgcolor: '#EFFBFC', py: 2 }}> {/* Replaced primary.light with #EFFBFC */}
-                    <Typography
-                        sx={{
-                            fontSize: '14px', // From theme.typography.body2
-                            lineHeight: '20px',
-                            fontFamily: 'Inter, sans-serif',
-                            color: '#475467', // Replaced text.secondary with #475467
-                            mb: 1,
-                            justifySelf: 'center',
-                        }}
-                    >
-                        Can't click the button above? Copy it below:
-                    </Typography>
-                    <Stack direction="row" spacing={1} justifyContent="center" alignItems="center">
-                        <Typography
-                            sx={{
-                                fontSize: '14px', // From theme.typography.body2
-                                lineHeight: '20px',
-                                fontFamily: 'Inter, sans-serif',
-                                color: '#2494B6', // Replaced primary.main with #2494B6
-                                wordBreak: 'break-word',
-                                maxWidth: '80%',
-                            }}
-                        >
-                            {shortenUrl(verificationUrl)}
-                        </Typography>
-                        <Button
-                            size="small"
-                            startIcon={<CopyIcon />}
-                            onClick={handleCopyLink}
-                            sx={{
-                                textTransform: 'none', // From theme.components.MuiButton.styleOverrides.root
-                                borderRadius: '8px',
-                                padding: '10px 16px',
-                                fontWeight: 600,
-                                color: '#2494B6', // Replaced primary.main with #2494B6
-                            }}
-                        >
+                <div className="url-copy-section">
+                    <p className="url-copy-text">Can't click the button above? Copy it below:</p>
+                    <div className="url-copy-container">
+                        <span className="url-text">{shortenUrl(verificationUrl)}</span>
+                        <button onClick={handleCopyLink} className="copy-button">
+                            <MdContentCopy className="copy-icon" />
                             Copy
-                        </Button>
-                    </Stack>
-                </CardContent>
+                        </button>
+                    </div>
+                </div>
 
                 {/* Support Section */}
-                <CardActions sx={{ justifyContent: 'center', pb: 3 }}>
-                    <Typography
-                        sx={{
-                            fontSize: '14px', // From theme.typography.body2
-                            lineHeight: '20px',
-                            fontFamily: 'Inter, sans-serif',
-                            color: '#475467', // Replaced text.secondary with #475467
-                        }}
-                    >
+                <div className="support-section">
+                    <p>
                         Need help?{' '}
-                        <Link
-                            href="https://support.gameboost.com"
-                            target="_blank"
-                            underline="hover"
-                            sx={{ color: '#2494B6' }} // Replaced primary.main with #2494B6
-                        >
+                        <a href="https://support.gameboost.com" target="_blank" rel="noopener noreferrer" className="support-link">
                             Contact help@enigma.com
-                        </Link>
-                    </Typography>
-                </CardActions>
-            </Card>
+                        </a>
+                    </p>
+                </div>
 
-            {/* Snackbar for copy confirmation */}
-            <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            >
-                <Alert
-                    severity="success"
-                    sx={{
-                        width: '100%',
-                        borderRadius: 4,
-                    }}
-                    onClose={handleClose}
-                >
-                    URL copied successfully!
-                </Alert>
-            </Snackbar>
-        </Container>
+                {/* Notification for copy confirmation */}
+                <div className="notification" ref={notificationRef}>
+                    <span>URL copied successfully!</span>
+                </div>
+            </div>
+
+            <style jsx>{`
+        .container {
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .card {
+          max-width: 500px;
+          border-radius: 12px;
+          margin-bottom: 16px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+          background-color: #ffffff;
+          width: 100%;
+        }
+
+        .divider {
+          margin: 8px 0;
+          border: 0;
+          border-top: 1px solid #e4e7ec;
+          width: 100%;
+          display: block;
+        }
+
+        @media (max-width: 600px) {
+          .divider {
+            display: block;
+          }
+        }
+
+        .card-content {
+          text-align: center;
+          padding: 16px;
+        }
+
+        .icon-title {
+          margin-bottom: 16px;
+        }
+
+        h3 {
+          font-size: 28px;
+          line-height: 32px;
+          font-weight: 600;
+          font-family: 'Inter', sans-serif;
+          margin-top: 8px;
+          color: #101828;
+        }
+
+        .greeting {
+          font-size: 16px;
+          line-height: 24px;
+          font-family: 'Inter', sans-serif;
+          color: #475467;
+          margin-bottom: 24px;
+          margin-top: 15px;
+        }
+
+        .chip {
+          display: inline-block;
+          padding: 4px 8px;
+          font-size: 12px;
+          line-height: 18px;
+          font-family: 'Inter', sans-serif;
+          color: #ed6c02;
+          border: 1px solid #ed6c02;
+          border-radius: 16px;
+          margin-bottom: 24px;
+        }
+
+        .button {
+          display: block;
+          width: 100%;
+          padding: 12px 16px;
+          font-size: 16px;
+          line-height: 24px;
+          font-weight: 600;
+          font-family: 'Inter', sans-serif;
+          background-color: #2494b6;
+          color: #ffffff;
+          text-decoration: none;
+          border-radius: 8px;
+          text-align: center;
+          transition: background-color 0.2s;
+        }
+
+        .button:hover {
+          background-color: #217799;
+        }
+
+        .url-copy-section {
+          background-color: #effbfc;
+          padding: 16px;
+        }
+
+        .url-copy-text {
+          font-size: 14px;
+          line-height: 20px;
+          font-family: 'Inter', sans-serif;
+          color: #475467;
+          margin-bottom: 8px;
+          text-align: center;
+        }
+
+        .url-copy-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .url-text {
+          font-size: 14px;
+          line-height: 20px;
+          font-family: 'Inter', sans-serif;
+          color: #2494b6;
+          word-break: break-word;
+          max-width: 80%;
+        }
+
+        .copy-button {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          padding: 4px 8px;
+          font-size: 16px;
+          line-height: 20px;
+          font-weight: 600;
+          font-family: 'Inter', sans-serif;
+          color: #2494b6;
+          background: none;
+          border: none;
+          border-radius: 8px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+        }
+
+        .copy-button:hover {
+          background-color: rgba(36, 14824, 2, 0.1);
+        }
+
+        .copy-icon {
+          width: 16px;
+          height: 16px;
+          fill: #2494b6;
+        }
+
+        .support-section {
+          display: flex;
+          justify-content: center;
+          padding-bottom: 24px;
+        }
+
+        .support-section {
+ p {
+          font-size: 14px;
+          line-height: 20px;
+          font-family: 'Inter', sans-serif;
+          color: #475467;
+          margin: 0;
+        }
+
+        .support-link {
+          color: #2494b6;
+          text-decoration: none;
+          }
+
+          .support-link:hover {
+            text-decoration: underline;
+          }
+
+          .notification {
+            position: fixed;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2e7d32;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            line-height: 20px;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+          , visibility 0.3s ease;
+        }
+
+        .notification.show {
+          opacity: 1;
+          visibility: visible;
+        }
+      `}</style>
+        </div>
     );
 }

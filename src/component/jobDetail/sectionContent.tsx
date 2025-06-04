@@ -31,6 +31,42 @@ const SectionContent: FunctionComponent = () => {
     const [showMore, setShowMore] = useState(false);
     const [showMoreJob, setShowMoreJob] = useState(false);
 
+    const jobs = [
+        {
+            img: './moreJob.png',
+            title: 'Delivery Manager',
+            deadline: 'May 31, 2025',
+            applicants: 11,
+            salary: '$60.00 - $70.00 Per Hour',
+            tags: ['Agile Delivery', 'Innovation Management', 'Team Leadership'],
+        },
+        {
+            img: './moreJob1.png',
+            title: 'Advanced IT Security Engineer',
+            deadline: 'June 5, 2025',
+            applicants: 15,
+            salary: '$55.00 - $65.00 Per Hour',
+            tags: ['Cybersecurity', 'Risk Assessment', 'Security Protocols'],
+        },
+        {
+            img: './moreJob2.png',
+            title: 'Infrastructure Project Manager',
+            deadline: 'June 10, 2025',
+            applicants: 11,
+            salary: '$50.00 - $60.00 Per Hour',
+            tags: ['Project Management', 'Infrastructure Planning', 'Stakeholder Communication'],
+        },
+        {
+            img: "/moreJob2.png",
+            title: "Infrastructure Project Manager",
+            deadline: "June 10, 2025",
+            applicants: 11,
+            salary: "$50.00 - $60.00 Per Hour",
+            tags: ["Project Management", "Infrastructure Planning", "Stakeholder Communication"],
+        },
+    ];
+    const displayedJobs = showMoreJob ? jobs : jobs.slice(0, 2);
+
     return (
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3, p: 2, }}>
@@ -503,84 +539,55 @@ const SectionContent: FunctionComponent = () => {
                         More jobs
                     </Typography>
                 </CardContent>
-                <Box sx={{ px: 2, display: "flex", flexDirection: "column", gap: 2 }}>
-                    {[
-                        {
-                            img: "/moreJob.png",
-                            title: "Delivery Manager",
-                            deadline: "May 31, 2025",
-                            applicants: 11,
-                            salary: "$60.00 - $70.00 Per Hour",
-                            tags: ["Agile Delivery", "Innovation Management", "Team Leadership"],
-                        },
-                        {
-                            img: "/moreJob1.png",
-                            title: "Advanced IT Security Engineer",
-                            deadline: "June 5, 2025",
-                            applicants: 15,
-                            salary: "$55.00 - $65.00 Per Hour",
-                            tags: ["Cybersecurity", "Risk Assessment", "Security Protocols"],
-                        },
-                        {
-                            img: "/moreJob2.png",
-                            title: "Infrastructure Project Manager",
-                            deadline: "June 10, 2025",
-                            applicants: 11,
-                            salary: "$50.00 - $60.00 Per Hour",
-                            tags: ["Project Management", "Infrastructure Planning", "Stakeholder Communication"],
-                        },
-                        {
-                            img: "/moreJob2.png",
-                            title: "Infrastructure Project Manager",
-                            deadline: "June 10, 2025",
-                            applicants: 11,
-                            salary: "$50.00 - $60.00 Per Hour",
-                            tags: ["Project Management", "Infrastructure Planning", "Stakeholder Communication"],
-                        },
-                    ].map((job, index) => {
+
+                <Box sx={{
+                    px: 2, display: "flex", flexDirection: "column", gap: 2
+                }}>
+                    {displayedJobs.map((job, index) => {
                         const deadlineDate = new Date(job.deadline);
                         const isExpired = deadlineDate < currentDate;
-                        const displayedJobs = showMoreJob ? job : job.slice(0, 2);
 
                         return (
-                            <Card key={index}
-                                sx={{ display: "flex", gap: 2, p: 2, border: "1px solid #e4e7ec", borderRadius: 3 }}>
+                            <Card
+                                key={index}
+                                sx={{ display: 'flex', gap: 2, p: 2, border: '1px solid #e4e7ec', borderRadius: 3 }}
+                            >
                                 <CardMedia
                                     component="img"
                                     sx={{
-                                        width: '200px', // Keep width at 30% of the card
-                                        height: '124px', // Let height adjust based on image aspect ratio
+                                        width: '200px',
+                                        height: '124px',
                                         borderRadius: 2,
-                                        objectFit: 'cover', // Show the entire image without cropping
-                                        objectPosition: 'center', // Center the image within the container
+                                        objectFit: 'cover',
+                                        objectPosition: 'center',
                                     }}
                                     image={job.img}
-                                    alt={'${job.title} Image'}
+                                    alt={`${job.title} Image`} // Fixed alt prop syntax
                                 />
-                                <Box sx={{ flex: 1, display: "flex", flexDirection: "column", gap: 1 }}>
-                                    <Box sx={{ display: "flex", alignItems: "center", gap: 2, justifyContent: 'space-between' }}>
-                                        <Typography fontSize={"18px"} lineHeight={"28px"} fontWeight={600}>
+                                <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, justifyContent: 'space-between' }}>
+                                        <Typography fontSize={'18px'} lineHeight={'28px'} fontWeight={600}>
                                             {job.title}
                                         </Typography>
                                         <Box>
                                             <IconButton>
-                                                <Image src="/bookmark.svg" alt="" height={24} width={24} />
+                                                <Image src="/bookmark.svg" alt="Bookmark Job" height={24} width={24} />
                                             </IconButton>
                                             <IconButton>
-                                                <Image src="/share.png" alt="" height={24} width={24} />
+                                                <Image src="/share.png" alt="Share Job" height={24} width={24} />
                                             </IconButton>
                                         </Box>
                                     </Box>
                                     <Box sx={{ display: 'flex', gap: 1 }}>
-                                        <Typography variant="body2" color={isExpired ? '#d32f2f' : "#6941c6"}>
+                                        <Typography variant="body2" color={isExpired ? '#d32f2f' : '#6941c6'}>
                                             Submission deadline: {job.deadline} {isExpired && '(Expired)'}
                                         </Typography>
-                                        <Typography variant="body2" color={"#6941c6"}>
+                                        <Typography variant="body2" color={'#6941c6'}>
                                             • {job.applicants} applicants
                                         </Typography>
                                     </Box>
                                     <Stack direction="row" spacing={1} alignItems="center">
-                                        <Image src="wallet.svg" alt="wallet" width={20} height={20} />
+                                        <Image src="/wallet.svg" alt="Salary Icon" width={20} height={20} />
                                         <Typography variant="body2">{job.salary}</Typography>
                                     </Stack>
                                     <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
@@ -588,7 +595,7 @@ const SectionContent: FunctionComponent = () => {
                                     </Stack>
                                 </Box>
                             </Card>
-                        )
+                        );
                     })}
 
                     {jobs.length > 2 && (
@@ -599,9 +606,9 @@ const SectionContent: FunctionComponent = () => {
                                 </Typography>
                                 <IconButton sx={{ color: '#217799' }} onClick={() => setShowMoreJob(!showMoreJob)}>
                                     {showMoreJob ? (
-                                        <Image src="/showless.svg" alt="Show less" height={20} width={20} />
+                                        <Image src="/showless.svg" alt="Show Less" height={20} width={20} />
                                     ) : (
-                                        <Image src="/showMore.svg" alt="Show more" height={24} width={24} />
+                                        <Image src="/showMore.svg" alt="Show More" height={24} width={24} />
                                     )}
                                 </IconButton>
                             </Box>
