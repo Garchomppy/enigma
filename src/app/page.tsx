@@ -41,10 +41,10 @@ export default function Home() {
     // <HomePage />
     // <TaskPage />
     // <LandingPage />
-    // <LoginPage />
+    <LoginPage />
     // <Footer />
     // <VerifyEmail />
-    <ForgotEmail />
+    // <ForgotEmail />
     // <JobDetailPage />
     // <Content />
     // <SlideOutMenu />

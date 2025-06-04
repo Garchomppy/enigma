@@ -3,7 +3,6 @@ import {
     Box,
     Typography,
     Button,
-    Chip,
     Divider,
     Card,
     CardMedia,
@@ -19,7 +18,6 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
 import {
     Share,
-    Work,
 } from "@mui/icons-material";
 import TagChips from "../badge";
 
@@ -72,7 +70,7 @@ const SectionContent: FunctionComponent = () => {
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3, p: 2, }}>
             {/* Job Details Section */}
             <Box>
-                <Card sx={{ borderRadius: 4 }}>
+                <Card sx={{ borderRadius: 4, boxShadow: 'none', }}>
                     <CardMedia
                         component="img"
                         height="291"
@@ -159,12 +157,25 @@ const SectionContent: FunctionComponent = () => {
 
                         </Box>
                     </CardContent>
-
+                    <Box
+                        sx={{
+                            // width: isCollapsed ? "6%" : "19%",
+                            justifySelf: 'flex-end',
+                            position: 'absolute',
+                            top: '160%',
+                            left: '73%',
+                            borderRadius: '12px',
+                            backgroundColor: '#d9d9d9',
+                            height: 80,
+                        }}
+                    />
                     {/* Job Summary and Responsibilities */}
                     <CardContent sx={{ bgcolor: '#fff', borderTop: '3px solid #f2f4f7' }}>
+
                         <Typography fontWeight={600} fontSize="20px" lineHeight="30px">
                             Job Summary
                         </Typography>
+
                         <Typography variant="body1" color="#475467" mt={1}>
                             We are seeking a highly skilled Senior Business Analyst (Blockchain) to join our dynamic team in Bangkok.
                             You will serve as the bridge between our blockchain product team and business stakeholders. This role is
@@ -533,7 +544,7 @@ const SectionContent: FunctionComponent = () => {
             </Box>
 
             {/* More Jobs Section */}
-            <Card sx={{ borderRadius: 4 }}>
+            <Card sx={{ borderRadius: 4, boxShadow: 'none', }}>
                 <CardContent>
                     <Typography fontSize={"20px"} lineHeight={"30px"} fontWeight={600}>
                         More jobs

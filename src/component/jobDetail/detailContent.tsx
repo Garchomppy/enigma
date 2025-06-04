@@ -96,17 +96,20 @@ export const DetailContent = () => {
             </Box>
 
             <Box sx={{
-                display: "flex", flexDirection: { xs: "column", lg: "row" }, gap: 4, width: '100%'
+                display: "flex", flexDirection: { xs: "column", lg: "row" }, gap: 2, width: '100%'
             }}>
                 {/* Left Column */}
                 <Box sx={{
                     width: '70%',
+                    display: "flex",
                     '@media (max-width: 991px)': {
                         width: '100%',
                         pr: 2,
                     },
                 }}>
+
                     <SectionContent />
+
                 </Box>
 
                 {/* Right Column */}
