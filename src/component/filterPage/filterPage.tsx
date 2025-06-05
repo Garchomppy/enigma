@@ -36,7 +36,11 @@ const ResetButton: FunctionComponent<{
     </Button>
 );
 
-const SlideOutMenu: FunctionComponent = () => {
+interface ContentProps {
+    handleCloseIcon: () => void;
+}
+
+const SlideOutMenu: React.FC<ContentProps> = ({ handleCloseIcon }) => {
 
     // Refs for each TextField
     const postDateRangeRef = useRef<HTMLInputElement | null>(null);
@@ -126,7 +130,7 @@ const SlideOutMenu: FunctionComponent = () => {
                     <Typography variant="h6" fontWeight={600} color='#101828'>
                         Filters by
                     </Typography>
-                    <IconButton sx={{ ml: 'auto' }}>
+                    <IconButton sx={{ ml: 'auto' }} onClick={handleCloseIcon}>
                         <Close />
                     </IconButton>
                 </Box>
