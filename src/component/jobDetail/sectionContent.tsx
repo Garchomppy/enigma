@@ -12,7 +12,8 @@ import {
     ListItem,
     ListItemText,
     Stack,
-    ListItemIcon
+    ListItemIcon,
+    Dialog
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
@@ -20,6 +21,7 @@ import {
     Share,
 } from "@mui/icons-material";
 import TagChips from "../badge";
+import Content from "./content";
 
 const SectionContent: FunctionComponent = () => {
     const tagss = ['ERP/CRM Systems', 'Fintech', 'Documentation Skills'];
@@ -28,6 +30,18 @@ const SectionContent: FunctionComponent = () => {
 
     const [showMore, setShowMore] = useState(false);
     const [showMoreJob, setShowMoreJob] = useState(false);
+
+    const [open, setOpen] = useState(false);
+
+    // Handle opening the dialog
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    // Handle closing the dialog
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     const jobs = [
         {
@@ -120,6 +134,7 @@ const SectionContent: FunctionComponent = () => {
                             <Button
                                 variant="contained"
                                 startIcon={<Share />}
+                                onClick={handleOpen}
                                 sx={{
                                     borderRadius: 2,
                                     background: "linear-gradient(94.87deg, #81cce3, #0675a1 76.92%)",
@@ -128,6 +143,21 @@ const SectionContent: FunctionComponent = () => {
                             >
                                 Apply Now
                             </Button>
+
+                            <Dialog open={open}
+                                onClose={handleClose}
+                                maxWidth="md"
+                                fullWidth
+                                PaperProps={{
+                                    sx: {
+                                        borderRadius: '12px'
+                                    }
+                                }}
+                            >
+                                <Content handleClose={handleClose} />
+                            </Dialog>
+
+
                         </Box>
                         <Typography variant="body2" color="#6941c6" mt={1}>
                             Submission deadline May 31, 2025 • 21 applicants

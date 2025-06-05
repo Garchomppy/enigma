@@ -14,18 +14,50 @@ import {
     CardContent,
     Stack,
     ThemeProvider,
+    IconButton
 } from "@mui/material";
 import theme from '../font/theme';
 import Image from "next/image";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import { Close } from '@mui/icons-material';
 
-const Content: FunctionComponent = () => {
+interface ContentProps {
+    handleClose: () => void;
+}
+
+const Content: React.FC<ContentProps> = ({ handleClose }) => {
+
     return (
         <ThemeProvider theme={theme}>
-            <Card sx={{ borderRadius: 4, p: 4, display: "flex", flexDirection: "column", gap: 6 }}>
-                <Typography variant="h5" fontWeight={600}>
-                    $Senior Business Analyst (Blockchain)
-                </Typography>
+            <Card sx={{
+                borderRadius: 4, p: 4,
+                display: "flex",
+                flexDirection: "column", gap: 6,
+                overflowX: 'hidden',
+                overflowY: 'auto',
+                scrollbarWidth: 'thin',
+                scrollbarColor: '#2494b6 #f1f1f1',
+                // Webkit scrollbar styles
+                '&::-webkit-scrollbar': {
+                    width: '8px',
+                },
+                '&::-webkit-scrollbar-track': {
+                    background: '#2494b6',
+                    borderRadius: '10px',
+                },
+                '&::-webkit-scrollbar-thumb': {
+                    background: '#2494b6',
+                    borderRadius: '10px',
+                },
+            }}>
+                <Box sx={{ display: 'flex' }}>
+                    <Typography variant="h5" fontWeight={600}>
+                        $Senior Business Analyst (Blockchain)
+                    </Typography>
+                    <IconButton sx={{ ml: 'auto' }} onClick={handleClose}>
+                        <Close />
+                    </IconButton>
+                </Box>
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
                     {/* Full Name */}
                     <Box>

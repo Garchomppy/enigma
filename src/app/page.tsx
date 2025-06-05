@@ -41,11 +41,11 @@ export default function Home() {
     // <HomePage />
     // <TaskPage />
     // <LandingPage />
-    <LoginPage />
+    // <LoginPage />
     // <Footer />
     // <VerifyEmail />
     // <ForgotEmail />
-    // <JobDetailPage />
+    <JobDetailPage />
     // <Content />
     // <SlideOutMenu />
     // <DistanceFilter />
