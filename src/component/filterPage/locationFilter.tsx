@@ -94,138 +94,6 @@ const Location = () => {
                     }}
                 >
 
-                    {/* Region Dropdown */}
-                    <Box
-                        sx={{
-                            borderRadius: '12px 0 0 12px',
-                            backgroundColor: '#fff',
-                            borderRight: '1px solid #e6e7e8',
-                            overflow: 'hidden',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            padding: '16px',
-                            gap: '16px',
-                            color: '#475467',
-                            width: '33%',
-
-                        }}
-                    >
-                        <Box sx={{
-                            width: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '12px'
-                        }}>
-                            <Box sx={{
-                                display: 'flex',
-                            }}>
-                                <Box sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    flex: 1
-                                }}>
-                                    <Box sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        justifyContent: 'center'
-                                    }}>
-                                        <ChevronLeftIcon sx={{ fontSize: '20px' }} />
-                                    </Box>
-                                    <Typography
-                                        variant='body1'
-                                        sx={{
-                                            fontWeight: 600,
-                                            color: '#262d34'
-                                        }}>
-                                        Region
-                                    </Typography>
-                                </Box>
-                                <Button
-                                    variant="text"
-                                    startIcon={<AddIcon />}
-                                    sx={{
-                                        color: '#2494b6',
-                                        textTransform: 'none',
-                                        padding: '8px 0',
-                                    }}
-                                >
-                                    Add Region
-                                </Button>
-                            </Box>
-                            <TextField
-                                fullWidth
-                                placeholder="Enter Region"
-                                variant="outlined"
-                                sx={{
-                                    '& .MuiOutlinedInput-root': {
-                                        borderRadius: '8px',
-                                        border: '1px solid #d0d5dd',
-                                        boxShadow: '0px 1px 2px rgba(16, 24, 40, 0.05)',
-                                        fontSize: '14px',
-                                        color: '#667085',
-                                    },
-                                    '& .MuiInputBase-input': { padding: '10px 14px' },
-                                }}
-                            />
-                        </Box>
-                        <List sx={{
-                            width: '100%',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '4px',
-                            maxHeight: '400px',
-                            overflow: 'auto',
-                            scrollbarColor: '#2494b6 #f1f1f1',
-                            scrollbarWidth: 'thin',
-                            '&::-webkit-scrollbar': {
-                                width: '8px',
-                            },
-                            '&::-webkit-scrollbar-track': {
-                                background: '#2494b6',
-                                borderRadius: '10px',
-                            },
-                            '&::-webkit-scrollbar-thumb': {
-                                background: '#2494b6',
-                                borderRadius: '10px',
-                            },
-                        }}>
-                            {['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'].map((region, index) => (
-                                <ListItemButton
-                                    key={region}
-                                    sx={{
-                                        borderBottom: '1px solid #e4e7ec',
-                                        height: '44px',
-                                        padding: '16px 12px',
-                                        backgroundColor: index === 2 ? '#f9fafb' : 'transparent',
-                                        zIndex: 4 - index,
-                                    }}
-                                >
-                                    <ListItemText
-                                        primary={region}
-                                        primaryTypographyProps={{
-                                            fontSize: '14px',
-                                            lineHeight: '20px',
-                                            width: '100%',
-                                        }}
-                                    />
-                                </ListItemButton>
-                            ))}
-                        </List>
-                        {/* DropdownChild - Placeholder for the vertical bar, if needed */}
-                        <Box
-                            sx={{
-                                position: 'absolute',
-                                top: '130px',
-                                left: '328px',
-                                borderRadius: '4px',
-                                backgroundColor: '#f2f4f7',
-                                height: '68px',
-                                zIndex: 2,
-                            }}
-                        />
-                    </Box>
-
                     {/* Country Dropdown */}
                     <Box
                         sx={{
@@ -237,9 +105,9 @@ const Location = () => {
                             alignItems: 'flex-start',
                             justifyContent: 'flex-start',
                             padding: '16px',
+                            paddingLeft: 0,
                             gap: '16px',
                             color: '#475467',
-                            width: '33%',
 
                         }}
                     >
@@ -263,24 +131,11 @@ const Location = () => {
                                         fontWeight: 600,
                                         color: '#262d34'
                                     }}>
-                                    Country
+                                    Cities
                                 </Typography>
-                                <Button
-                                    variant="text"
-                                    startIcon={<AddIcon />}
-                                    sx={{
-                                        color: '#2494b6',
-                                        textTransform: 'none',
-                                        fontSize: '14px',
-                                        padding: '8px 0',
-                                    }}
-                                >
-                                    Add Country
-                                </Button>
                             </Box>
                             <TextField
-                                fullWidth
-                                placeholder="Enter Country"
+                                placeholder="Enter Cities"
                                 variant="outlined"
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
@@ -367,9 +222,9 @@ const Location = () => {
                             display: 'flex',
                             flexDirection: 'column',
                             padding: '16px',
+                            paddingRight: '0',
                             gap: '16px',
                             color: '#475467',
-                            width: '33%',
                         }}
                     >
                         <Box sx={{
@@ -379,9 +234,7 @@ const Location = () => {
                             gap: '12px'
                         }}>
                             <Box sx={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'center',
+                                alignSelf: 'end',
                                 justifyContent: 'space-between',
                             }}>
                                 <Typography
@@ -390,24 +243,12 @@ const Location = () => {
                                         fontWeight: 600,
                                         color: '#262d34'
                                     }}>
-                                    Province
+                                    Provinces
                                 </Typography>
-                                <Button
-                                    variant="text"
-                                    startIcon={<AddIcon />}
-                                    sx={{
-                                        color: '#2494b6',
-                                        textTransform: 'none',
-                                        fontSize: '14px',
-                                        padding: '8px 0',
-                                    }}
-                                >
-                                    Add Province
-                                </Button>
+
                             </Box>
                             <TextField
-                                fullWidth
-                                placeholder="Enter Province"
+                                placeholder="Enter Provinces"
                                 variant="outlined"
                                 sx={{
                                     '& .MuiOutlinedInput-root': {
