@@ -275,7 +275,7 @@ const SlideOutMenu: React.FC<ContentProps> = ({ handleCloseIcon }) => {
                                     borderColor: '#D0D5DD',
                                     borderRadius: '8px'
                                 }}
-                                onClick={handleClose}>
+                                onClick={handleCloseIcon}>
                                 Cancel
                             </Button>
                             <Button variant="contained"

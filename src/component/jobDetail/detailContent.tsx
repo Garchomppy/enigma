@@ -1,19 +1,12 @@
 import * as React from "react";
 import SuggestedJobCard from "../suggestJobCard";
 import SectionTitle from "../font/sectionTitle";
-import Image from 'next/image';
-import SearchIcon from '@mui/icons-material/Search';
 import LogoHeader from "../logoHeader";
 import SectionContent from "./sectionContent";
 import {
     Box,
     Typography,
-    Button,
     Chip,
-    Card,
-    CardContent,
-    IconButton,
-    TextField, InputAdornment,
     Divider,
 } from "@mui/material";
 import SearchBar from "../searchBar";

@@ -72,6 +72,7 @@ export const SidebarNavigation = () => {
         { text: "Dashboard", icon: <Image src="/dashboard.svg" alt="dashboard" width={24} height={24} /> },
         { text: "User", icon: <Image src="/user.svg" alt="manage users" width={24} height={24} /> },
         { text: "Jobs", icon: <Image src="/job.svg" alt="manage jobs" width={24} height={24} /> },
+        { text: "Resume", icon: <Image src="/mail.svg" alt="resume" width={24} height={24} /> },
         {
             text: "Media",
             icon: <Image src="/media.svg" alt="media" width={24} height={24} />,

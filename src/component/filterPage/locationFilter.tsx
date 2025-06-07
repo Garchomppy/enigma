@@ -135,6 +135,7 @@ const Location = () => {
                                 </Typography>
                             </Box>
                             <TextField
+                                fullWidth
                                 placeholder="Enter Cities"
                                 variant="outlined"
                                 sx={{
@@ -248,6 +249,7 @@ const Location = () => {
 
                             </Box>
                             <TextField
+                                fullWidth
                                 placeholder="Enter Provinces"
                                 variant="outlined"
                                 sx={{
