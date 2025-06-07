@@ -15,19 +15,22 @@ import {
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import Image from 'next/image';
 
 // Sample data
 const tableData = [
-    { name: 'Olivia Rhye', handle: '@olivia', userId: '#1425', role: 'Admin', email: 'olivia@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Active' },
-    { name: 'Phoenix Baker', handle: '@phoenix', userId: '#1425', role: 'Seeker', email: 'phoenix@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Deactivated' },
-    { name: 'Lana Steiner', handle: '@lana', userId: '#1425', role: 'Seeker', email: 'lana@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Active' },
-    { name: 'Demi Wilkinson', handle: '@demi', userId: '#1425', role: 'Seeker', email: 'demi@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Active' },
-    { name: 'Candice Wu', handle: '@candice', userId: '#1425', role: 'Admin', email: 'candice@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Active' },
-    { name: 'Natali Craig', handle: '@natali', userId: '#1425', role: 'Seeker', email: 'natali@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Deactivated' },
-    { name: 'Drew Cano', handle: '@drew', userId: '#1425', role: 'Seeker', email: 'drew@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Active' },
-    { name: 'Orlando Diggs', handle: '@orlando', userId: '#1425', role: 'Admin', email: 'orlando@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Active' },
-    { name: 'Andi Lane', handle: '@andi', userId: '#1425', role: 'Seeker', email: 'andi@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Active' },
-    { name: 'Kate Morrison', handle: '@kate', userId: '#1425', role: 'Seeker', email: 'kate@untitledui.com', specializations: ['Design', 'Product', 'Marketing', '+4'], status: 'Active' },
+    { name: 'Olivia Rhye', handle: '@olivia', userId: '#1425', role: 'Admin', email: 'olivia@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'Engineering', 'Sales', 'Support', 'Research'], status: 'Active' },
+    { name: 'Phoenix Baker', handle: '@phoenix', userId: '#1425', role: 'Seeker', email: 'phoenix@untitledui.com', specializations: ['Design', 'Product'], status: 'Deactivated' },
+    { name: 'Lana Steiner', handle: '@lana', userId: '#1425', role: 'Seeker', email: 'lana@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'HR'], status: 'Active' },
+    { name: 'Demi Wilkinson', handle: '@demi', userId: '#1425', role: 'Seeker', email: 'demi@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'Finance', 'Operations'], status: 'Active' },
+    { name: 'Candice Wu', handle: '@candice', userId: '#1425', role: 'Admin', email: 'candice@untitledui.com', specializations: ['Design', 'Product', 'Marketing'], status: 'Active' },
+    { name: 'Natali Craig', handle: '@natali', userId: '#1425', role: 'Seeker', email: 'natali@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'Engineering'], status: 'Deactivated' },
+    { name: 'Drew Cano', handle: '@drew', userId: '#1425', role: 'Seeker', email: 'drew@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'Sales', 'Support'], status: 'Active' },
+    { name: 'Orlando Diggs', handle: '@orlando', userId: '#1425', role: 'Admin', email: 'orlando@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'HR', 'Finance', 'Operations'], status: 'Active' },
+    { name: 'Andi Lane', handle: '@andi', userId: '#1425', role: 'Seeker', email: 'andi@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'Engineering'], status: 'Active' },
+    { name: 'Kate Morrison', handle: '@kate', userId: '#1425', role: 'Seeker', email: 'kate@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'Sales'], status: 'Active' },
+    { name: 'Andi Lane', handle: '@andi', userId: '#1425', role: 'Seeker', email: 'andi@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'Engineering'], status: 'Active' },
+    { name: 'Kate Morrison', handle: '@kate', userId: '#1425', role: 'Seeker', email: 'kate@untitledui.com', specializations: ['Design', 'Product', 'Marketing', 'Sales'], status: 'Active' },
 ];
 
 const DashboardUser = () => {
@@ -38,8 +41,42 @@ const DashboardUser = () => {
         setPage((prev) => (direction === 'next' ? prev + 1 : prev - 1));
     };
 
+    const renderSpecializations = (specializations: any[]) => {
+        const maxDisplay = 3; // Limit to 3 visible specializations
+        const displayed = specializations.slice(0, maxDisplay);
+        const extraCount = specializations.length - maxDisplay;
+
+        return (
+            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                {displayed.map((spec: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, i: React.Key | null | undefined) => (
+                    <Chip
+                        key={i}
+                        label={spec}
+                        size="small"
+                        sx={{
+                            borderRadius: '16px',
+                            bgcolor: spec === 'Design' ? '#f9f5ff' : spec === 'Product' ? '#eff8ff' : spec === 'Marketing' ? '#eef4ff' : '#f9fafb',
+                            color: spec === 'Design' ? '#6941c6' : spec === 'Product' ? '#175cd3' : spec === 'Marketing' ? '#3538cd' : '#344054',
+                        }}
+                    />
+                ))}
+                {extraCount > 0 && (
+                    <Chip
+                        label={`+${extraCount}`}
+                        size="small"
+                        sx={{
+                            borderRadius: '16px',
+                            bgcolor: '#f9fafb',
+                            color: '#344054',
+                        }}
+                    />
+                )}
+            </Box>
+        );
+    };
+
     return (
-        <TableContainer sx={{ border: '1px solid #e4e7ec', borderRadius: '12px' }}>
+        <TableContainer sx={{ border: '1px solid #e4e7ec', borderRadius: '12px', backgroundColor: '#F9FAFB' }}>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -62,7 +99,7 @@ const DashboardUser = () => {
                         <TableRow key={index}>
                             <TableCell>
                                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                                    <Avatar sx={{ width: 40, height: 40 }} />
+                                    <Avatar src='/Avatar1.png' sx={{ width: 40, height: 40 }} />
                                     <Box>
                                         <Typography fontWeight={500}>{row.name}</Typography>
                                         <Typography fontSize="14px" color="text.secondary">{row.handle}</Typography>
@@ -72,22 +109,7 @@ const DashboardUser = () => {
                             <TableCell>{row.userId}</TableCell>
                             <TableCell>{row.role}</TableCell>
                             <TableCell>{row.email}</TableCell>
-                            <TableCell>
-                                <Box sx={{ display: 'flex', gap: 1 }}>
-                                    {row.specializations.map((spec, i) => (
-                                        <Chip
-                                            key={i}
-                                            label={spec}
-                                            size="small"
-                                            sx={{
-                                                borderRadius: '16px',
-                                                bgcolor: spec === 'Design' ? '#f9f5ff' : spec === 'Product' ? '#eff8ff' : spec === 'Marketing' ? '#eef4ff' : '#f9fafb',
-                                                color: spec === 'Design' ? '#6941c6' : spec === 'Product' ? '#175cd3' : spec === 'Marketing' ? '#3538cd' : '#344054',
-                                            }}
-                                        />
-                                    ))}
-                                </Box>
-                            </TableCell>
+                            <TableCell>{renderSpecializations(row.specializations)}</TableCell>
                             <TableCell>
                                 <Chip
                                     label={row.status}
@@ -102,7 +124,7 @@ const DashboardUser = () => {
                             <TableCell>
                                 <Button sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                     <Typography>View details</Typography>
-                                    <ArrowRightIcon sx={{ fontSize: '16px' }} />
+                                    <Image src="/arrowRight.svg" alt='details' width={24} height={24} />
                                 </Button>
                             </TableCell>
                         </TableRow>
@@ -117,9 +139,8 @@ const DashboardUser = () => {
                 p: 2,
                 borderTop: '1px solid #e4e7ec'
             }}>
-
                 <Button
-                    startIcon={<ArrowLeftIcon />}
+                    startIcon={<Image src="/arrowLeft.svg" alt='details' width={24} height={24} />}
                     onClick={() => handleChangePage('prev')}
                     disabled={page === 0}
                     sx={{
@@ -138,6 +159,7 @@ const DashboardUser = () => {
                 >
                     Previous
                 </Button>
+
                 <Box sx={{ display: 'flex', gap: 1 }}>
                     {[1, 2, 3, '...', 8, 9, 10].map((num, index) => (
                         <Typography
@@ -158,7 +180,7 @@ const DashboardUser = () => {
                     ))}
                 </Box>
                 <Button
-                    endIcon={<ArrowRightIcon />}
+                    endIcon={<Image src="/arrowRight.svg" alt='details' width={24} height={24} />}
                     onClick={() => handleChangePage('next')}
                     disabled={page >= Math.ceil(tableData.length / rowsPerPage) - 1}
                     sx={{
