@@ -13,8 +13,6 @@ import {
     Button,
 } from '@mui/material';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import Image from 'next/image';
 
 // Sample data
@@ -37,9 +35,9 @@ const DashboardUser = () => {
     const [page, setPage] = useState(0);
     const rowsPerPage = 10;
 
-    const handleChangePage = (direction: string) => {
+    function handleChangePage(direction: string) {
         setPage((prev) => (direction === 'next' ? prev + 1 : prev - 1));
-    };
+    }
 
     const renderSpecializations = (specializations: any[]) => {
         const maxDisplay = 3; // Limit to 3 visible specializations
@@ -48,7 +46,7 @@ const DashboardUser = () => {
 
         return (
             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {displayed.map((spec: string | number | bigint | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, i: React.Key | null | undefined) => (
+                {displayed.map((spec: string | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | null | undefined> | null | undefined, i: React.Key | null | undefined) => (
                     <Chip
                         key={i}
                         label={spec}

@@ -21,6 +21,7 @@ import Location from '@/component/filterPage/locationFilter';
 import DistanceFilter from '@/component/filterPage/distance';
 import SearchBar from '@/component/searchBar';
 import UserManagement from '@/component/admin/userManager/userManager';
+import UserDetail from '@/component/admin/userDetail/userDetail';
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false)
@@ -53,6 +54,7 @@ export default function Home() {
     // <DatePickerMenu />
     // <Location />
     // <SearchBar />
-    <UserManagement />
+    // <UserManagement />
+    <UserDetail />
   );
 }

@@ -3,7 +3,12 @@ import { Box, TextField, InputAdornment, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ClearIcon from '@mui/icons-material/Clear';
 
-export default function SearchBar() {
+// Define the props interface for TypeScript
+interface SearchBarProps {
+    placeholder?: string; // Optional prop for custom placeholder
+}
+
+const SearchBar: React.FC<SearchBarProps> = ({ placeholder = 'Job positions/ Company name' }) => {
     const [inputValue, setInputValue] = React.useState('');
     const [isSpinning, setIsSpinning] = React.useState(false);
 
@@ -28,7 +33,7 @@ export default function SearchBar() {
             <TextField
                 fullWidth
                 variant="outlined"
-                placeholder="Job positions/ Company name"
+                placeholder={placeholder} // Use the prop here
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 InputProps={{
@@ -79,9 +84,11 @@ export default function SearchBar() {
                         '&.Mui-focused fieldset': { borderColor: '#98A2B3' },
                     },
                     '& input': { color: '#98A2B3', fontSize: '20px' },
-                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                    boxShadow: '0px 4px 8px -2px rgba(16, 24, 40, 0.1), 0px 2px 4px -2px rgba(16, 24, 40, 0.06)',
                 }}
             />
         </Box>
     );
-}
+};
+
+export default SearchBar;
