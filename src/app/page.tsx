@@ -41,7 +41,7 @@ export default function Home() {
     // <ForgotPass />
     // <CheckPass />
     // <HomePage />
-    // <TaskPage />
+    <TaskPage />
     // <LandingPage />
     // <LoginPage />
     // <Footer />
@@ -55,6 +55,6 @@ export default function Home() {
     // <Location />
     // <SearchBar />
     // <UserManagement />
-    <UserDetail />
+    // <UserDetail />
   );
 }

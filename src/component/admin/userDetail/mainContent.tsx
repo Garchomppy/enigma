@@ -23,10 +23,13 @@ export const MainContent = () => {
             </Typography>
 
             <Box sx={{
-                display: 'flex', gap: 2, p: 3, mb: 3, alignItems: 'center', color: '#98A2B3',
+                display: 'flex',
+                gap: 2, p: 3, mb: 3, mt: 3,
+                width: '100%', mx: 'auto', alignItems: 'center', color: '#98A2B3',
                 '@media (max-width: 991px)': {
-                    maxWidth: '100%',
-                    flexDirection: 'row',
+                    width: '100%',
+                    gap: 5,
+                    flexDirection: 'column',
                     mb: -2
                 },
             }}>
@@ -36,7 +39,7 @@ export const MainContent = () => {
             <Box sx={{ p: 3 }}>
                 <DashboardDetail />
             </Box>
-        </Box>
+        </Box >
     );
 };
 

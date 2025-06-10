@@ -16,11 +16,6 @@ const SectionDetail = () => {
         <Box
             sx={{
                 width: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                justifyContent: 'flex-start',
-                textAlign: 'left',
                 color: '#101828',
             }}
         >
@@ -33,6 +28,7 @@ const SectionDetail = () => {
                     justifyContent: 'flex-start',
                     padding: '0 32px',
                     gap: '24px',
+                    width: '100%',
                 }}
             >
                 {/* Section Header */}
@@ -114,11 +110,7 @@ const SectionDetail = () => {
                     sx={{
                         alignSelf: 'stretch',
                         display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'flex-start',
-                        justifyContent: 'flex-start',
-                        flexWrap: 'wrap',
-                        gap: { xs: '24px', md: '64px' },
+                        gap: { xs: '24px', md: '0' },
                         color: '#475467',
                     }}
                 >
@@ -126,13 +118,9 @@ const SectionDetail = () => {
                     <Box
                         sx={{
                             display: 'flex',
-                            flexDirection: 'row',
-                            alignItems: 'flex-start',
-                            justifyContent: 'flex-start',
                             flexWrap: 'wrap',
-                            gap: '24px',
-                            minWidth: '400px',
-                            maxWidth: '400px',
+                            gap: '20px',
+                            width: '40%'
                         }}
                     >
                         {[
@@ -147,13 +135,12 @@ const SectionDetail = () => {
                             <Box
                                 key={index}
                                 sx={{
-                                    width: '188px',
+                                    width: '40%',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     alignItems: 'flex-start',
                                     justifyContent: 'flex-start',
                                     gap: '8px',
-                                    minWidth: '160px',
                                 }}
                             >
                                 <Typography
@@ -169,9 +156,6 @@ const SectionDetail = () => {
                                     <Button
                                         sx={{
                                             display: 'flex',
-                                            flexDirection: 'row',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
                                             gap: '6px',
                                             color: '#2494b6',
                                             textTransform: 'none',
@@ -218,9 +202,8 @@ const SectionDetail = () => {
                             alignItems: 'flex-start',
                             justifyContent: 'flex-start',
                             gap: '20px',
-                            minWidth: '480px',
-                            maxWidth: '640px',
                             color: '#101828',
+                            width: '60%'
                         }}
                     >
                         <Box

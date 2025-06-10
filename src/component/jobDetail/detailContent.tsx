@@ -47,7 +47,8 @@ export const DetailContent = () => {
                 '@media (max-width: 991px)': {
                     maxWidth: '100%',
                     flexDirection: 'column',
-                    mb: -2
+                    mb: -2,
+                    gap: 5
                 },
             }}>
 

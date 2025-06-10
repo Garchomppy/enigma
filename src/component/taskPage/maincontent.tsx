@@ -44,11 +44,13 @@ export const MainContent = () => {
 
             {/* Search and Filter */}
             <Box sx={{
-                display: 'flex', gap: 2, p: 3, mb: 3, mt: 3, maxWidth: '100%', mx: 'auto', alignItems: 'center', color: '#98A2B3',
+                display: 'flex',
+                gap: 2, p: 3, mb: 3, mt: 3, width: '100%', mx: 'auto', alignItems: 'center', color: '#98A2B3',
                 '@media (max-width: 991px)': {
-                    maxWidth: '100%',
-                    flexDirection: 'row',
-                    mb: -2
+                    width: '100%',
+                    flexDirection: 'column',
+                    mb: -2,
+                    gap: 4
                 },
             }}>
                 <SearchBar />
