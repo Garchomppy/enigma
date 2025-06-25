@@ -27,6 +27,7 @@ import Job from '@/component/admin/job/job';
 import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
+import JobDetailAdminPage from '@/component/admin/jobDetail/jobDetailPage';
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false)
@@ -60,8 +61,9 @@ export default function Home() {
     // <Location />
     // <SearchBar />
     // <UserManagement />
-    <UserDetail />
+    // <UserDetail />
     // <VerifySucces />
     // <Job />
+    <JobDetailAdminPage />
   );
 }

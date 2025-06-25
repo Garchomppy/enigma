@@ -12,56 +12,17 @@ import {
     ListItemText,
     Stack,
     ListItemIcon,
+    Chip
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Image from "next/image";
-import TagChips from "../badge";
-import ApplyNowDialog from "../admin/jobDetail/buttonAdmin";
+
+import TagChips from "@/component/badge";
+import ApplyNowDialog from "./buttonAdmin";
 
 const SectionContent: FunctionComponent = () => {
     const tagss = ['ERP/CRM Systems', 'Fintech', 'Documentation Skills'];
-
-    const currentDate = new Date();
-
     const [showMore, setShowMore] = useState(false);
-    const [showMoreJob, setShowMoreJob] = useState(false);
-
-    const jobs = [
-        {
-            img: './moreJob.png',
-            title: 'Delivery Manager',
-            deadline: 'May 31, 2025',
-            applicants: 11,
-            salary: '$60.00 - $70.00 Per Hour',
-            tags: ['Agile Delivery', 'Innovation Management', 'Team Leadership'],
-        },
-        {
-            img: './moreJob1.png',
-            title: 'Advanced IT Security Engineer',
-            deadline: 'June 5, 2025',
-            applicants: 15,
-            salary: '$55.00 - $65.00 Per Hour',
-            tags: ['Cybersecurity', 'Risk Assessment', 'Security Protocols'],
-        },
-        {
-            img: './moreJob2.png',
-            title: 'Infrastructure Project Manager',
-            deadline: 'June 10, 2025',
-            applicants: 11,
-            salary: '$50.00 - $60.00 Per Hour',
-            tags: ['Project Management', 'Infrastructure Planning', 'Stakeholder Communication'],
-        },
-        {
-            img: "/moreJob2.png",
-            title: "Infrastructure Project Manager",
-            deadline: "June 10, 2025",
-            applicants: 11,
-            salary: "$50.00 - $60.00 Per Hour",
-            tags: ["Project Management", "Infrastructure Planning", "Stakeholder Communication"],
-        },
-    ];
-    const displayedJobs = showMoreJob ? jobs : jobs.slice(0, 2);
-
     return (
 
         <Box sx={{ display: "flex", flexDirection: "column", gap: 3, p: 2, }}>
@@ -75,6 +36,7 @@ const SectionContent: FunctionComponent = () => {
                         alt="Job Banner"
                         sx={{ borderRadius: "8px", objectFit: "cover" }}
                     />
+
                     <CardContent>
                         {/* Company Info */}
                         <Box
@@ -82,6 +44,7 @@ const SectionContent: FunctionComponent = () => {
                                 display: "flex",
                                 alignItems: "center",
                                 justifyContent: "space-between",
+                                backgroundColor: "none",
                                 py: 2,
                                 borderBottom: "1px solid #f2f4f7",
                             }}
@@ -91,9 +54,6 @@ const SectionContent: FunctionComponent = () => {
                                 <Box>
                                     <Typography variant="h6" fontWeight={500}>
                                         KBTG SELL
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        KASIKORN Group, Inc.
                                     </Typography>
                                 </Box>
                             </Box>
@@ -114,8 +74,8 @@ const SectionContent: FunctionComponent = () => {
                             <Typography variant="h5" fontWeight={600}>
                                 Senior Business Analyst (Blockchain)
                             </Typography>
-
-                            <ApplyNowDialog role="seeker" />
+                            {/* applay buttton */}
+                            <ApplyNowDialog role="admin" />
 
                         </Box>
                         <Typography variant="body2" color="#6941c6" mt={1}>
@@ -133,12 +93,8 @@ const SectionContent: FunctionComponent = () => {
                                 <Typography variant="body2">Din Daeng, Bangkok</Typography>
                             </Stack>
                             <Stack direction="row" spacing={1.5} alignItems="center">
-                                <Image src="clock.svg" alt="time" width={24} height={24} />
-                                <Typography variant="body2">Full time</Typography>
-                            </Stack>
-                            <Stack direction="row" spacing={1.5} alignItems="center">
                                 <Image src="bagBlack.svg" alt="experiment" width={24} height={24} />
-                                <Typography variant="body2">2 years</Typography>
+                                <Chip label="Permanent" variant="outlined" size="small" />
                             </Stack>
                             <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
                                 <TagChips tags={tagss} salary="" showSalary={false} />
@@ -146,6 +102,7 @@ const SectionContent: FunctionComponent = () => {
 
                         </Box>
                     </CardContent>
+
                     <Box
                         sx={{
                             // width: isCollapsed ? "6%" : "19%",
@@ -158,6 +115,7 @@ const SectionContent: FunctionComponent = () => {
                             height: 80,
                         }}
                     />
+
                     {/* Job Summary and Responsibilities */}
                     <CardContent sx={{ bgcolor: '#fff', borderTop: '3px solid #f2f4f7' }}>
 
@@ -532,90 +490,6 @@ const SectionContent: FunctionComponent = () => {
                 </Card>
             </Box>
 
-            {/* More Jobs Section */}
-            <Card sx={{ borderRadius: 4, boxShadow: 'none', }}>
-                <CardContent>
-                    <Typography fontSize={"20px"} lineHeight={"30px"} fontWeight={600}>
-                        More jobs
-                    </Typography>
-                </CardContent>
-
-                <Box sx={{
-                    px: 2, display: "flex", flexDirection: "column", gap: 2
-                }}>
-                    {displayedJobs.map((job, index) => {
-                        const deadlineDate = new Date(job.deadline);
-                        const isExpired = deadlineDate < currentDate;
-
-                        return (
-                            <Card
-                                key={index}
-                                sx={{ display: 'flex', gap: 2, p: 2, border: '1px solid #e4e7ec', borderRadius: 3 }}
-                            >
-                                <CardMedia
-                                    component="img"
-                                    sx={{
-                                        width: '200px',
-                                        height: '124px',
-                                        borderRadius: 2,
-                                        objectFit: 'cover',
-                                        objectPosition: 'center',
-                                    }}
-                                    image={job.img}
-                                    alt={`${job.title} Image`} // Fixed alt prop syntax
-                                />
-                                <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1 }}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, justifyContent: 'space-between' }}>
-                                        <Typography fontSize={'18px'} lineHeight={'28px'} fontWeight={600}>
-                                            {job.title}
-                                        </Typography>
-                                        <Box>
-                                            <IconButton>
-                                                <Image src="/bookmark.svg" alt="Bookmark Job" height={24} width={24} />
-                                            </IconButton>
-                                            <IconButton>
-                                                <Image src="/share.png" alt="Share Job" height={24} width={24} />
-                                            </IconButton>
-                                        </Box>
-                                    </Box>
-                                    <Box sx={{ display: 'flex', gap: 1 }}>
-                                        <Typography variant="body2" color={isExpired ? '#d32f2f' : '#6941c6'}>
-                                            Submission deadline: {job.deadline} {isExpired && '(Expired)'}
-                                        </Typography>
-                                        <Typography variant="body2" color={'#6941c6'}>
-                                            • {job.applicants} applicants
-                                        </Typography>
-                                    </Box>
-                                    <Stack direction="row" spacing={1} alignItems="center">
-                                        <Image src="/wallet.svg" alt="Salary Icon" width={20} height={20} />
-                                        <Typography variant="body2">{job.salary}</Typography>
-                                    </Stack>
-                                    <Stack direction="row" spacing={1} flexWrap="wrap" gap={1}>
-                                        <TagChips tags={job.tags} salary="" showSalary={false} />
-                                    </Stack>
-                                </Box>
-                            </Card>
-                        );
-                    })}
-
-                    {jobs.length > 2 && (
-                        <CardContent>
-                            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1 }}>
-                                <Typography variant="body1" fontWeight={600} sx={{ color: '#217799' }}>
-                                    {showMoreJob ? 'Show less' : 'Show more'}
-                                </Typography>
-                                <IconButton sx={{ color: '#217799' }} onClick={() => setShowMoreJob(!showMoreJob)}>
-                                    {showMoreJob ? (
-                                        <Image src="/showless.svg" alt="Show Less" height={20} width={20} />
-                                    ) : (
-                                        <Image src="/showMore.svg" alt="Show More" height={24} width={24} />
-                                    )}
-                                </IconButton>
-                            </Box>
-                        </CardContent>
-                    )}
-                </Box>
-            </Card>
         </Box >
     );
 };
