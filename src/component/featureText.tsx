@@ -23,7 +23,7 @@ const features = [
         description: "We source CI experts and technicians to drive lean practices, improve processes, and handle equipment maintenance proactively."
     },
     {
-        icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/fdc1c50ed6af9c42bd8c909335b1c0317345324a?placeholderIfAbsent=true&apiKey=8ef08a3c60b44d4ba008c3e63d84c943",
+        icon: "/12345.png",
         title: "Supply Chain and Logistics",
         description: "Our talent pool includes professionals skilled in procurement, warehousing, distribution, and global logistics coordination."
     },
@@ -76,6 +76,8 @@ const FeatureText: React.FC = () => {
                                 component="img"
                                 src={feature.icon}
                                 sx={{
+                                    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                                    border: '1px solid rgba(255, 255, 255, 0.8)',
                                     width: 48,
                                     height: 48,
                                     mb: 3,

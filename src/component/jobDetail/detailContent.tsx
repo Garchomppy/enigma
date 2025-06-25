@@ -6,21 +6,13 @@ import SectionContent from "./sectionContent";
 import {
     Box,
     Typography,
-    Chip,
     Divider,
 } from "@mui/material";
 import SearchBar from "../searchBar";
 import { FilterSortBar } from "../filterSortBar";
+import { PopularJobChip } from "../popularJob";
 
 export const DetailContent = () => {
-
-    const popularJobs = [
-        "Digital Marketer",
-        "Software Developer",
-        "Tour Guide",
-        "English Teacher",
-        "Hotel Receptionist",
-    ];
 
     return (
         <Box component="main" sx={{
@@ -57,37 +49,7 @@ export const DetailContent = () => {
             </Box>
 
             {/* Popular Jobs */}
-            <Box sx={{
-                mb: 2.5, display: 'flex', gap: 2,
-                '@media (max-width: 991px)': {
-                    width: '100%',
-                    flexDirection: 'column',
-                    p: 2.5,
-                    mb: 2
-                },
-
-            }}>
-                <Typography variant="h6" color="text.secondary" sx={{ mb: 1 }}>
-                    Popular Jobs:
-                </Typography>
-
-                <Box sx={{ display: "flex", gap: 1.5, flexWrap: "wrap" }}>
-                    {popularJobs.map((job, index) => (
-                        <Chip
-                            key={index}
-                            label={job}
-                            variant="outlined"
-                            clickable
-                            sx={{
-                                color: '#667085',
-                                borderColor: '#2494B6',
-                                '&:hover': {
-                                    backgroundColor: '#2494B620' // 20% opacity
-                                }
-                            }} />
-                    ))}
-                </Box>
-            </Box>
+            <PopularJobChip />
 
             <Box sx={{
                 display: "flex", flexDirection: { xs: "column", lg: "row" }, gap: 2, width: '100%'
@@ -103,7 +65,6 @@ export const DetailContent = () => {
                 }}>
 
                     <SectionContent />
-
                 </Box>
 
                 {/* Right Column */}

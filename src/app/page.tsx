@@ -22,6 +22,11 @@ import DistanceFilter from '@/component/filterPage/distance';
 import SearchBar from '@/component/searchBar';
 import UserManagement from '@/component/admin/userManager/userManager';
 import UserDetail from '@/component/admin/userDetail/userDetail';
+import { VerifySucces } from '@/component/newVerification/verifyPage';
+import Job from '@/component/admin/job/job';
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false)
@@ -41,7 +46,7 @@ export default function Home() {
     // <ForgotPass />
     // <CheckPass />
     // <HomePage />
-    <TaskPage />
+    // <TaskPage />
     // <LandingPage />
     // <LoginPage />
     // <Footer />
@@ -55,6 +60,8 @@ export default function Home() {
     // <Location />
     // <SearchBar />
     // <UserManagement />
-    // <UserDetail />
+    <UserDetail />
+    // <VerifySucces />
+    // <Job />
   );
 }

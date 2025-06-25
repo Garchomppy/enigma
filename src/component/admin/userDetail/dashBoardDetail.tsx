@@ -97,6 +97,8 @@ const DashboardDetail = () => {
                                     size="small"
                                     sx={{
                                         borderRadius: '16px',
+                                        fontWeight: 530,
+                                        fontSize: '12px',
                                         bgcolor:
                                             row.appState === 'Waiting' ? '#fff7ed' : row.appState === 'Current' ? '#eff6ff' : '#f9fafb',
                                         color:

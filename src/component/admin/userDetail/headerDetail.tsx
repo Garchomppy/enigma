@@ -7,19 +7,21 @@ import {
     IconButton,
 } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Image from 'next/image';
+import DeleteButton from './buttonDialog';
 
 const PageHeader = () => {
+    // Add to delete
+    const handleDelete = (itemId: string | number) => {
+        console.log(`Deleting item with ID: ${itemId}`);
+        // Add your delete logic here (e.g., API call)
+    };
+
     return (
         <Box
             sx={{
-                width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                textAlign: 'left',
                 color: '#101828',
             }}
         >
@@ -38,9 +40,6 @@ const PageHeader = () => {
             {/* Container */}
             <Box
                 sx={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
                     padding: '0 32px',
                     boxSizing: 'border-box',
                     position: 'relative',
@@ -50,11 +49,7 @@ const PageHeader = () => {
                 {/* Avatar and Content */}
                 <Box
                     sx={{
-                        alignSelf: 'stretch',
                         display: 'flex',
-                        flexDirection: 'row',
-                        alignItems: 'flex-start',
-                        justifyContent: 'flex-start',
                         gap: '24px',
                     }}
                 >
@@ -92,21 +87,13 @@ const PageHeader = () => {
                     <Box
                         sx={{
                             flex: 1,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'flex-start',
-                            justifyContent: 'flex-start',
                             padding: '64px 0 0',
                         }}
                     >
                         {/* Heading */}
                         <Box
                             sx={{
-                                alignSelf: 'stretch',
                                 display: 'flex',
-                                flexDirection: 'row',
-                                alignItems: 'flex-start',
-                                justifyContent: 'flex-start',
                                 flexWrap: 'wrap',
                                 gap: '16px',
                             }}
@@ -117,8 +104,6 @@ const PageHeader = () => {
                                     flex: 1,
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    alignItems: 'flex-start',
-                                    justifyContent: 'flex-start',
                                     gap: '4px',
                                     minWidth: '240px',
                                 }}
@@ -148,9 +133,7 @@ const PageHeader = () => {
                             <Box
                                 sx={{
                                     display: 'flex',
-                                    flexDirection: 'row',
                                     alignItems: 'center',
-                                    justifyContent: 'flex-start',
                                     gap: '12px',
                                     color: '#344054',
                                 }}
@@ -181,24 +164,11 @@ const PageHeader = () => {
                                 >
                                     Edit
                                 </Button>
-                                <Button
-                                    sx={{
-                                        boxShadow: '0px 0px 0px 1px rgba(16, 24, 40, 0.18) inset, 0px -2px 0px rgba(16, 24, 40, 0.05) inset, 0px 1px 2px rgba(16, 24, 40, 0.05)',
-                                        borderRadius: '8px',
-                                        backgroundColor: '#2494b6',
-                                        border: '2px solid rgba(255, 255, 255, 0.12)',
-                                        color: '#fff',
-                                        padding: '10px 14px',
-                                        textTransform: 'none',
-                                        fontWeight: 600,
-                                        fontSize: '14px',
-                                        '&:hover': {
-                                            backgroundColor: '#1e7a96', // Darker shade for hover
-                                        },
-                                    }}
-                                >
-                                    Delete
-                                </Button>
+
+                                <DeleteButton itemId={1} onDelete={handleDelete}
+                                    buttonText="Delete"
+                                    dialogMessage="Do you want to delete this account permanently?"
+                                />
                             </Box>
                         </Box>
                     </Box>

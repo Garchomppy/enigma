@@ -11,7 +11,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward'; // Thay cho arrow
 import LogoHeader from "@/component/logoHeader";
 import SectionTitle from "@/component/font/sectionTitle";
 import Image from "next/image";
-import DashboardUser from "./dashboardUser";
+import DashboardJob from "./dashboardJob";
 
 export const MainContent = () => {
 
@@ -26,24 +26,24 @@ export const MainContent = () => {
         }}>
             <Box sx={{ display: { lg: 'none', sm: 'block' } }}>
                 <LogoHeader />
-                <Divider sx={{ mt: 1, mb: 3, width: '100%' }} />
+                <Divider sx={{ mt: 1, mb: 1, width: '100%' }} />
             </Box>
 
-            <Typography sx={{ fontSize: '30px', lineHeight: '38px', mb: 5 }} fontWeight={600} color="#101828">
-                User Management
+            <Typography sx={{ fontSize: '30px', lineHeight: '38px', mb: 3 }} fontWeight={600} color="#101828">
+                Job
             </Typography>
 
             {/* Popular Jobs */}
 
             <Typography sx={{ fontSize: '20px', lineHeight: '30px', mb: 4 }} fontWeight={600} gutterBottom color="#101828">
-                Overview of User Metrics
+                Overview of Job Activity
             </Typography>
             <Box sx={{
                 mb: 5, display: 'flex', gap: 2,
                 width: '100%',
                 '@media (max-width: 991px)': {
                     width: '100%',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                 },
             }}>
                 {/* Card 1 */}
@@ -86,7 +86,7 @@ export const MainContent = () => {
                                     color: '#40b0d0',
                                 }}
                             >
-                                <Image src="/user1.svg" alt="Total user" width={24} height={24} />
+                                <Image src="/bagJob.svg" alt="Total Job Post" width={24} height={24} />
                             </Box>
                         </Box>
                     </Box>
@@ -119,7 +119,7 @@ export const MainContent = () => {
                                 color: '#475467',
                             }}
                         >
-                            Total Users
+                            Total Job Post
                         </Typography>
                         <Box
                             sx={{
@@ -222,7 +222,7 @@ export const MainContent = () => {
                                     color: '#40b0d0',
                                 }}
                             >
-                                <Image src="/userActive.svg" alt="Total user" width={24} height={24} />
+                                <Image src="/alertJob.svg" alt="Job Expiration Alert" width={24} height={24} />
                             </Box>
                         </Box>
                     </Box>
@@ -241,7 +241,7 @@ export const MainContent = () => {
                                 color: '#475467',
                             }}
                         >
-                            Active Users
+                            Job Expiration Alert
                         </Typography>
                         <Box
                             sx={{
@@ -342,7 +342,7 @@ export const MainContent = () => {
                                     color: '#40b0d0',
                                 }}
                             >
-                                <Image src="/userVerified.svg" alt="Total user" width={24} height={24} />
+                                <Image src="/monitorJob.svg" alt="Jobs Created This Month" width={24} height={24} />
                             </Box>
                         </Box>
                     </Box>
@@ -361,7 +361,7 @@ export const MainContent = () => {
                                 color: '#475467',
                             }}
                         >
-                            Verified Users
+                            Jobs Created This Month
                         </Typography>
                         <Box
                             sx={{
@@ -414,11 +414,8 @@ export const MainContent = () => {
                     </Box>
                 </Card>
             </Box>
-
-            <SectionTitle title="All Users Overview" shopBage showOptions showOptions1 />
-            <DashboardUser />
-
-
+            <SectionTitle title="Job Postings" showOptions showOptions1 />
+            <DashboardJob />
         </Box >
     );
 };
