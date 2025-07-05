@@ -7,8 +7,6 @@ import { MainContent } from "./mainContent";
 export default function HomePage() {
     // 19 % for expanded sidebar, 6 % for collapsed sidebar
 
-    const [isCollapsed, setIsCollapsed] = React.useState(false);
-    const sidebarWidth = isCollapsed ? '6%' : '19%';
     return (
 
         <Box
@@ -22,13 +20,12 @@ export default function HomePage() {
                 },
             }}
         >
-            <SidebarNavigation isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+            <SidebarNavigation />
             <Box
                 sx={{
                     flex: 1,
                     width: '100%',
                     bgcolor: '#FFF',
-                    marginLeft: { sm: sidebarWidth },
                     '@media (max-width: 991px)': {
                         marginLeft: '0',
                         width: '100%',

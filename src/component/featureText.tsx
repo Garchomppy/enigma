@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Box,
     Typography,
@@ -6,6 +6,7 @@ import {
     Card,
     styled,
 } from '@mui/material';
+
 const features = [
     {
         icon: "https://cdn.builder.io/api/v1/image/assets/TEMP/bf891ef41bca0e8aba070376107c9b9db8862d19?placeholderIfAbsent=true&apiKey=8ef08a3c60b44d4ba008c3e63d84c943",
@@ -47,16 +48,32 @@ const features = [
 const FeatureCard = styled(Card)({
     boxShadow: 'none',
     textAlign: 'center',
-    height: '100%',
+    width: '100%',
+    transition: 'margin 0.3s ease', // Smooth transition for margin changes
 });
 
+const DescriptionBox = styled(Box)(({ theme }) => ({
+    color: '#404A7C',
+    borderRadius: theme.shape.borderRadius,
+    marginTop: theme.spacing(2),
+    opacity: 0,
+    transition: 'opacity 0.3s ease, transform 0.3s ease',
+    transform: 'scale(0.8)',
+    maxWidth: '90%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    textAlign: 'center',
+}));
+
 const FeatureText: React.FC = () => {
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
     return (
         <Box
             sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: 3, // Replaces spacing from Grid
+                gap: 2,
                 justifyContent: 'center',
             }}
         >
@@ -64,13 +81,17 @@ const FeatureText: React.FC = () => {
                 <Box
                     key={index}
                     sx={{
-                        flex: '1 1 calc(33.333% - 16px)', // Three columns with gap adjustment
-                        maxWidth: 'calc(33.333% - 16px)', // Ensure each card takes ~1/3 width
-                        minWidth: { xs: '360px', lg: '250px' }, // Minimum width for readability
-                        pr: 2,
+                        flex: '1 1 calc(33.333% - 16px)',
+                        maxWidth: 'calc(33.333% - 16px)',
+                        minWidth: { xs: '360px', lg: '250px' },
+                        transition: 'margin 0.3s ease', // Smooth margin transition
+                        marginBottom: hoveredIndex === index ? '48px' : '0px', // Increase margin-bottom on hover
                     }}
                 >
-                    <FeatureCard>
+                    <FeatureCard
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                    >
                         <CardContent>
                             <Box
                                 component="img"
@@ -80,24 +101,32 @@ const FeatureText: React.FC = () => {
                                     border: '1px solid rgba(255, 255, 255, 0.8)',
                                     width: 48,
                                     height: 48,
-                                    mb: 3,
+                                    mb: 2,
+                                    cursor: 'pointer',
                                 }}
                             />
-                            <Typography variant="h3" gutterBottom>
+                            <Typography
+                                variant="h3"
+                                sx={{ cursor: 'pointer' }}
+                            >
                                 {feature.title}
                             </Typography>
-                            <Typography
-                                variant="body1"
-                                color="text.secondary"
+                            <DescriptionBox
+                                sx={{
+                                    opacity: hoveredIndex === index ? 1 : 0,
+                                    transform: hoveredIndex === index ? 'scale(1)' : 'scale(0.8)',
+                                }}
                             >
-                                {feature.description}
-                            </Typography>
+                                <Typography variant="body2">
+                                    {feature.description}
+                                </Typography>
+                            </DescriptionBox>
                         </CardContent>
                     </FeatureCard>
                 </Box>
-
             ))}
         </Box>
     );
 };
+
 export default FeatureText;

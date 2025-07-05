@@ -28,6 +28,10 @@ import '@fontsource/inter/400.css';
 import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
 import JobDetailAdminPage from '@/component/admin/jobDetail/jobDetailPage';
+import AboutUsPage from '@/component/aboutUs/aboutUsPage';
+import { Save } from '@mui/icons-material';
+import SaveJobPage from '@/component/saveJobPage/saveJobPage';
+import HistoryApplicationPage from '@/component/historyApllication/saveJobPage';
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false)
@@ -48,7 +52,6 @@ export default function Home() {
     // <CheckPass />
     // <HomePage />
     // <TaskPage />
-    // <LandingPage />
     // <LoginPage />
     // <Footer />
     // <VerifyEmail />
@@ -64,6 +67,10 @@ export default function Home() {
     // <UserDetail />
     // <VerifySucces />
     // <Job />
-    <JobDetailAdminPage />
+    // <JobDetailAdminPage />
+    // <AboutUsPage />
+    // <LandingPage />
+    // <SaveJobPage />
+    <HistoryApplicationPage />
   );
 }

@@ -28,6 +28,7 @@ export function FilterSortBar() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 gap: 2,
+                backgroundColor: '#F9FAFB',
                 border: '1px solid #e0e0e0',
                 borderRadius: 2,
                 px: 2,
@@ -47,7 +48,7 @@ export function FilterSortBar() {
                     width: '100%',
                     fontWeight: '600',
                     borderColor: '#98A2B3',
-                    color: '#98A2B3',
+                    color: '#475467',
                     '&:hover': {
                         borderColor: '#2494B6',
                         color: '#FDFDFD',
@@ -73,7 +74,7 @@ export function FilterSortBar() {
                     width: '100%',
                     fontWeight: 600,
                     borderColor: '#98A2B3',
-                    color: '#98A2B3',
+                    color: '#475467',
                     '&:hover': {
                         borderColor: '#2494B6',
                         color: '#FDFDFD',
